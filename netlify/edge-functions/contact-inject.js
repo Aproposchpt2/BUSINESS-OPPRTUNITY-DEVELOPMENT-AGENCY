@@ -167,7 +167,7 @@ const contactScript = `
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.ok) throw new Error(result.message || 'We could not send your inquiry right now.');
       try {
-        if (['aproposopportunity.org', 'www.aproposopportunity.org'].includes(location.hostname) && window.gtag) {
+        if (['boda.aproposgroupllc.com'].includes(location.hostname) && window.gtag) {
           const services = { 'Contract Preparedness': 'contract_preparedness', 'Business Opportunity': 'business_opportunity', 'Procurement Intelligence': 'procurement_intelligence', 'Partnership': 'partnership', 'Funding or Sponsorship': 'funding', 'General Inquiry': 'general' };
           window.gtag('event', 'generate_lead', { send_to: 'G-VXX1P92PHS', service: services[data.inquiryType] || 'general', page_location: location.origin + location.pathname });
         }

@@ -29,7 +29,7 @@ body.nav-open{overflow:hidden}.boda-header{position:fixed;inset:0 0 auto 0;z-ind
 <!-- Google tag: Apropos Group LLC .ORG / Apropos Opportunity -->
 <script>
 (function () {
-  if (!['aproposopportunity.org', 'www.aproposopportunity.org'].includes(window.location.hostname)) return;
+  if (!['boda.aproposgroupllc.com'].includes(window.location.hostname)) return;
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
   window.gtag('js', new Date());
@@ -56,7 +56,7 @@ if (names.includes(campaign.get('utm_campaign'))) attribution.campaign_name = ca
 <script>
 window.trackOpportunityEvent = function (name, service, done) {
   var finish = function () { if (done) { var callback = done; done = null; callback(); } };
-  if (!['aproposopportunity.org', 'www.aproposopportunity.org'].includes(location.hostname)) { finish(); return; }
+  if (!['boda.aproposgroupllc.com'].includes(location.hostname)) { finish(); return; }
   var timer;
   try {
     timer = setTimeout(finish, 800);

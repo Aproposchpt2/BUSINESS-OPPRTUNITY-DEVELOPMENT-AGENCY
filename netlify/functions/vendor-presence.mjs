@@ -446,7 +446,7 @@ async function sendVerification({ businessName, claimantName, email, rawToken, r
   const apiKey = Netlify.env.get('RESEND_API_KEY');
   const from = Netlify.env.get('RESEND_FROM_EMAIL');
   if (!apiKey || !from) throw new Error('Verification email service is unavailable.');
-  const origin = 'https://aproposopportunity.org';
+  const origin = 'https://boda.aproposgroupllc.com';
   const verifyUrl = `${origin}/api/vendor-presence?action=${registry ? 'registry-confirm' : 'verify'}&token=${encodeURIComponent(rawToken)}`;
   const heading = registry ? 'Verify your Business Registry listing' : 'Verify your business claim';
   const subject = `${heading} — ${businessName}`;
@@ -523,7 +523,7 @@ async function sendClaimNotice(email, businessName, title) {
       <h1 style="font-family:Georgia,serif;font-weight:500;margin:10px 0 0">Your opportunity has been claimed</h1>
     </div>
     <div style="padding:28px;border:1px solid #d6e1e9;border-top:0;background:#f8fcff">
-      <p>The complimentary contract opportunity for <strong>${safe(businessName)}</strong> was claimed on aproposopportunity.org:</p>
+      <p>The complimentary contract opportunity for <strong>${safe(businessName)}</strong> was claimed on boda.aproposgroupllc.com:</p>
       <p><strong>${safe(title)}</strong></p>
       <p style="font-size:12px;color:#657489">If you did not claim it, reply to this email and we will secure your listing.</p>
     </div>
@@ -534,7 +534,7 @@ async function sendClaimNotice(email, businessName, title) {
       headers:{ authorization:`Bearer ${apiKey}`, 'content-type':'application/json' },
       body:JSON.stringify({ from, to:[email], reply_to:'jmitchell@aproposgroupllc.com',
         subject:`Your opportunity has been claimed — ${safe(businessName)}`, html,
-        text:`The complimentary contract opportunity for ${businessName} (${title}) was claimed on aproposopportunity.org. If you did not claim it, reply to this email and we will secure your listing.` }),
+        text:`The complimentary contract opportunity for ${businessName} (${title}) was claimed on boda.aproposgroupllc.com. If you did not claim it, reply to this email and we will secure your listing.` }),
       signal:AbortSignal.timeout(8000)
     });
     if (!r.ok) console.error('claim notice email failed', r.status, await r.text());
@@ -771,7 +771,7 @@ async function cardEdit(req, url, action) {
       if (cards.length === 1) {
         await issueEditCode({ email, profile: cards[0] });
       } else if (cards.length > 1) {
-        const links = cards.map(card => `<p><a href="https://aproposopportunity.org/vendor-edit?card=${encodeURIComponent(card.slug)}">${String(card.business_name).replace(/[<>&]/g, '')}</a></p>`).join('');
+        const links = cards.map(card => `<p><a href="https://boda.aproposgroupllc.com/vendor-edit?card=${encodeURIComponent(card.slug)}">${String(card.business_name).replace(/[<>&]/g, '')}</a></p>`).join('');
         await sendCardEmail({
           email,
           subject: 'Choose the Vendor Card to edit',
@@ -886,7 +886,7 @@ async function cardEdit(req, url, action) {
 
 async function registryIntake(req) {
   const origin = req.headers.get('origin');
-  if (!['https://bdms.aproposgroupllc.com', 'https://aproposopportunity.org'].includes(origin)) {
+  if (!['https://bdms.aproposgroupllc.com', 'https://boda.aproposgroupllc.com'].includes(origin)) {
     return json({ok:false,error:'Invalid request origin.'},403);
   }
   const headers = {
@@ -918,7 +918,7 @@ async function registryIntake(req) {
         || phone.replace(/\D/g,'').length < 7 || input?.registry_consent !== true) {
       return json({ok:false,error:'Complete every field with valid business details and confirm publication consent.'},400,headers);
     }
-    const source = origin === 'https://aproposopportunity.org' ? 'boda_business_registry' : 'bdms_business_registry';
+    const source = origin === 'https://boda.aproposgroupllc.com' ? 'boda_business_registry' : 'bdms_business_registry';
     const recent = await db('boda_vendor_claims','GET',
       `?select=id&source=in.(bdms_business_registry,boda_business_registry)&claimant_email=eq.${encodeURIComponent(email)}&created_at=gt.${encodeURIComponent(new Date(Date.now()-10*60*1000).toISOString())}&limit=1`);
     if (recent?.length) return json({ok:true,message},200,headers);
@@ -1181,7 +1181,7 @@ export default async (req) => {
           `Rate our Approach: ${score(input.rating) ?? '—'} / 5`,
           `Rate the current procurement process: ${score(input.process_rating) ?? '—'} / 5`,
           `Comment: ${comment || '(none)'}`,
-          `Vendor Card: https://aproposopportunity.org/vendor/${profile.slug}`,
+          `Vendor Card: https://boda.aproposgroupllc.com/vendor/${profile.slug}`,
         ], profile.owner_email);
       }
       return json({ok:true});
@@ -1377,13 +1377,13 @@ export default async (req) => {
       await Promise.all([
         sendClaimNotice(email, match.contractor_name, match.contract_title),
         notifyOwner(`New claim: ${match.contractor_name}`, [
-          'A complimentary opportunity was just claimed on aproposopportunity.org.', '',
+          'A complimentary opportunity was just claimed on boda.aproposgroupllc.com.', '',
           `Business: ${match.contractor_name}`,
           `Claimed by: ${claimantName} <${email}>`,
           `Opportunity: ${match.contract_title || ''}`,
           `Agency: ${match.agency_name || ''}`,
           `Opportunity Reference: ${reference}`,
-          `Vendor Card: https://aproposopportunity.org/vendor/${profile.slug}`,
+          `Vendor Card: https://boda.aproposgroupllc.com/vendor/${profile.slug}`,
         ], email),
       ]);
       return json({ok:true,profile:{business_name:profile.business_name,slug:profile.slug},created},200,{
