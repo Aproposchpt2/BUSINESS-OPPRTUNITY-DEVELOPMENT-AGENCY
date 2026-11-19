@@ -1,5 +1,5 @@
 // Business Development Roadmap -- order, intake, customer workspace, and
-// operator workflow. Built from BODA issue #19 (2026-10-06). Payment is
+// operator workflow. Built from SBDA issue #19 (2026-10-06). Payment is
 // verified server-side against the AI4 Product Purchasing hub's
 // product_entitlements table (same cross-project pattern as
 // vendor-presence.mjs's checkEntitlement) -- a client-supplied email/session
@@ -92,7 +92,7 @@ export default async (req) => {
     // business-development-roadmap.html) so it can be set the moment Jeff
     // creates the live $1,295 Price in Stripe, with zero code changes. The
     // Payment Link's own success_url must be configured in Stripe to
-    // https://boda.stellaruc.com/roadmap-intake?session_id={CHECKOUT_SESSION_ID}.
+    // https://sbda.stellaruc.com/roadmap-intake?session_id={CHECKOUT_SESSION_ID}.
     if (req.method === 'GET' && action === 'checkout') {
       const link = Netlify.env.get('BODA_ROADMAP_PAYMENT_LINK_URL');
       if (!link) {

@@ -23,4 +23,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://boda.stellaruc.com/sitemap.xml
+Sitemap: https://sbda.stellaruc.com/sitemap.xml

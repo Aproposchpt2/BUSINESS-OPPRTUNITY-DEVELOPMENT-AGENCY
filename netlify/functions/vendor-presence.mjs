@@ -446,24 +446,24 @@ async function sendVerification({ businessName, claimantName, email, rawToken, r
   const apiKey = Netlify.env.get('RESEND_API_KEY');
   const from = Netlify.env.get('RESEND_FROM_EMAIL');
   if (!apiKey || !from) throw new Error('Verification email service is unavailable.');
-  const origin = 'https://boda.stellaruc.com';
+  const origin = 'https://sbda.stellaruc.com';
   const verifyUrl = `${origin}/api/vendor-presence?action=${registry ? 'registry-confirm' : 'verify'}&token=${encodeURIComponent(rawToken)}`;
   const heading = registry ? 'Verify your Business Registry listing' : 'Verify your business claim';
   const subject = `${heading} — ${businessName}`;
   const html = `
   <div style="font-family:Arial,sans-serif;color:#14233a;max-width:640px;margin:auto">
     <div style="background:#081a31;color:white;padding:28px;border-bottom:4px solid #c7a75a">
-      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#ead9a5">Business Opportunity Development Agency</div>
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#ead9a5">Stellar Business Development Agency</div>
       <h1 style="font-family:Georgia,serif;font-weight:500;margin:10px 0 0">${heading}</h1>
     </div>
     <div style="padding:28px;border:1px solid #d6e1e9;border-top:0;background:#f8fcff">
       <p>Hello ${claimantName.replace(/[<>&]/g,'')},</p>
       <p>${registry ? "A free Vendor Card was requested for" : "A claim was submitted for"} <strong>${businessName.replace(/[<>&]/g,'')}</strong>.</p>
-      <p>Only an authorized representative of the business can edit its Business Opportunity Development Agency Vendor Page.</p>
+      <p>Only an authorized representative of the business can edit its Stellar Business Development Agency Vendor Page.</p>
       <p style="margin:26px 0"><a href="${verifyUrl}" style="display:inline-block;background:#c7a75a;color:#081a31;padding:13px 20px;text-decoration:none;font-weight:700">${heading}</a></p>
       <p style="font-size:12px;color:#657489">This verification link expires in 30 minutes. If you did not submit this claim, no action is required.</p>
     </div>
-    <p style="font-size:11px;color:#718094">Business Opportunity Development Agency<br>A property of Apropos Group LLC</p>
+    <p style="font-size:11px;color:#718094">Stellar Business Development Agency<br>A property of Apropos Group LLC</p>
   </div>`;
   const r = await fetch('https://api.resend.com/emails', {
     method:'POST',
@@ -519,22 +519,22 @@ async function sendClaimNotice(email, businessName, title) {
     const html = `
   <div style="font-family:Arial,sans-serif;color:#14233a;max-width:640px;margin:auto">
     <div style="background:#081a31;color:white;padding:28px;border-bottom:4px solid #c7a75a">
-      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#ead9a5">Business Opportunity Development Agency</div>
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#ead9a5">Stellar Business Development Agency</div>
       <h1 style="font-family:Georgia,serif;font-weight:500;margin:10px 0 0">Your opportunity has been claimed</h1>
     </div>
     <div style="padding:28px;border:1px solid #d6e1e9;border-top:0;background:#f8fcff">
-      <p>The complimentary contract opportunity for <strong>${safe(businessName)}</strong> was claimed on boda.stellaruc.com:</p>
+      <p>The complimentary contract opportunity for <strong>${safe(businessName)}</strong> was claimed on sbda.stellaruc.com:</p>
       <p><strong>${safe(title)}</strong></p>
       <p style="font-size:12px;color:#657489">If you did not claim it, reply to this email and we will secure your listing.</p>
     </div>
-    <p style="font-size:11px;color:#718094">Business Opportunity Development Agency<br>A property of Apropos Group LLC</p>
+    <p style="font-size:11px;color:#718094">Stellar Business Development Agency<br>A property of Apropos Group LLC</p>
   </div>`;
     const r = await fetch('https://api.resend.com/emails', {
       method:'POST',
       headers:{ authorization:`Bearer ${apiKey}`, 'content-type':'application/json' },
       body:JSON.stringify({ from, to:[email], reply_to:'jmitchell@aproposgroupllc.com',
         subject:`Your opportunity has been claimed — ${safe(businessName)}`, html,
-        text:`The complimentary contract opportunity for ${businessName} (${title}) was claimed on boda.stellaruc.com. If you did not claim it, reply to this email and we will secure your listing.` }),
+        text:`The complimentary contract opportunity for ${businessName} (${title}) was claimed on sbda.stellaruc.com. If you did not claim it, reply to this email and we will secure your listing.` }),
       signal:AbortSignal.timeout(8000)
     });
     if (!r.ok) console.error('claim notice email failed', r.status, await r.text());
@@ -621,13 +621,13 @@ async function sendCardEmail({ email, subject, heading, bodyHtml }) {
   const html = `
   <div style="font-family:Arial,sans-serif;color:#14233a;max-width:640px;margin:auto">
     <div style="background:#081a31;color:white;padding:28px;border-bottom:4px solid #c7a75a">
-      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#ead9a5">Business Opportunity Development Agency</div>
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#ead9a5">Stellar Business Development Agency</div>
       <h1 style="font-family:Georgia,serif;font-weight:500;margin:10px 0 0">${heading}</h1>
     </div>
     <div style="padding:28px;border:1px solid #d6e1e9;border-top:0;background:#f8fcff">${bodyHtml}
       <p style="font-size:12px;color:#657489">If you did not request this, no action is required.</p>
     </div>
-    <p style="font-size:11px;color:#718094">Business Opportunity Development Agency<br>A property of Apropos Group LLC</p>
+    <p style="font-size:11px;color:#718094">Stellar Business Development Agency<br>A property of Apropos Group LLC</p>
   </div>`;
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -771,7 +771,7 @@ async function cardEdit(req, url, action) {
       if (cards.length === 1) {
         await issueEditCode({ email, profile: cards[0] });
       } else if (cards.length > 1) {
-        const links = cards.map(card => `<p><a href="https://boda.stellaruc.com/vendor-edit?card=${encodeURIComponent(card.slug)}">${String(card.business_name).replace(/[<>&]/g, '')}</a></p>`).join('');
+        const links = cards.map(card => `<p><a href="https://sbda.stellaruc.com/vendor-edit?card=${encodeURIComponent(card.slug)}">${String(card.business_name).replace(/[<>&]/g, '')}</a></p>`).join('');
         await sendCardEmail({
           email,
           subject: 'Choose the Vendor Card to edit',
@@ -886,7 +886,7 @@ async function cardEdit(req, url, action) {
 
 async function registryIntake(req) {
   const origin = req.headers.get('origin');
-  if (!['https://bdms.aproposgroupllc.com', 'https://boda.stellaruc.com'].includes(origin)) {
+  if (!['https://bdms.aproposgroupllc.com', 'https://sbda.stellaruc.com', 'https://boda.stellaruc.com'].includes(origin)) {
     return json({ok:false,error:'Invalid request origin.'},403);
   }
   const headers = {
@@ -918,7 +918,7 @@ async function registryIntake(req) {
         || phone.replace(/\D/g,'').length < 7 || input?.registry_consent !== true) {
       return json({ok:false,error:'Complete every field with valid business details and confirm publication consent.'},400,headers);
     }
-    const source = origin === 'https://boda.stellaruc.com' ? 'boda_business_registry' : 'bdms_business_registry';
+    const source = ['https://sbda.stellaruc.com', 'https://boda.stellaruc.com'].includes(origin) ? 'boda_business_registry' : 'bdms_business_registry';
     const recent = await db('boda_vendor_claims','GET',
       `?select=id&source=in.(bdms_business_registry,boda_business_registry)&claimant_email=eq.${encodeURIComponent(email)}&created_at=gt.${encodeURIComponent(new Date(Date.now()-10*60*1000).toISOString())}&limit=1`);
     if (recent?.length) return json({ok:true,message},200,headers);
@@ -962,13 +962,13 @@ function registryConfirmPage({ token: rawToken = '', businessName = '', expired 
       <a class="button" href="/free-vendor-card">Request Your Free Vendor Card</a>`
     : `<h1>Confirm your free Vendor Card</h1>
       <p class="name">${safe(businessName)}</p>
-      <p>Confirm to publish your business name, website, phone, and email in the BODA Business Registry.</p>
+      <p>Confirm to publish your business name, website, phone, and email in the SBDA Business Registry.</p>
       <form method="post" action="/api/vendor-presence?action=registry-confirm">
         <input type="hidden" name="token" value="${safe(rawToken)}">
         <button class="button" type="submit">Confirm and Publish</button>
       </form>
       <p class="note">You can edit or remove your card at any time with a code sent to your business email.</p>`;
-  return new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${expired ? 'Link Expired' : 'Confirm Your Vendor Card'} | BODA</title>
+  return new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${expired ? 'Link Expired' : 'Confirm Your Vendor Card'} | SBDA</title>
 <style>
 *{box-sizing:border-box;font-weight:400!important}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#080808;color:#f8f7f3;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
@@ -987,7 +987,7 @@ p{margin:0 0 16px;color:#c8c3b9}
 footer{padding:20px clamp(16px,4vw,40px);border-top:1px solid #3b3324;color:#c8c3b9;font-size:.85rem}
 footer a{color:#d7b76d}
 </style></head><body>
-<header><a class="brand" href="/">BODA<small>BUSINESS OPPORTUNITY DEVELOPMENT AGENCY</small></a></header>
+<header><a class="brand" href="/">SBDA<small>STELLAR BUSINESS DEVELOPMENT AGENCY</small></a></header>
 <main><div class="panel">${body}</div></main>
 <footer>© 2026 Apropos Group LLC. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer>
 </body></html>`, {status, headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store','referrer-policy':'same-origin','x-robots-tag':'noindex'}});
@@ -1181,7 +1181,7 @@ export default async (req) => {
           `Rate our Approach: ${score(input.rating) ?? '—'} / 5`,
           `Rate the current procurement process: ${score(input.process_rating) ?? '—'} / 5`,
           `Comment: ${comment || '(none)'}`,
-          `Vendor Card: https://boda.stellaruc.com/vendor/${profile.slug}`,
+          `Vendor Card: https://sbda.stellaruc.com/vendor/${profile.slug}`,
         ], profile.owner_email);
       }
       return json({ok:true});
@@ -1377,13 +1377,13 @@ export default async (req) => {
       await Promise.all([
         sendClaimNotice(email, match.contractor_name, match.contract_title),
         notifyOwner(`New claim: ${match.contractor_name}`, [
-          'A complimentary opportunity was just claimed on boda.stellaruc.com.', '',
+          'A complimentary opportunity was just claimed on sbda.stellaruc.com.', '',
           `Business: ${match.contractor_name}`,
           `Claimed by: ${claimantName} <${email}>`,
           `Opportunity: ${match.contract_title || ''}`,
           `Agency: ${match.agency_name || ''}`,
           `Opportunity Reference: ${reference}`,
-          `Vendor Card: https://boda.stellaruc.com/vendor/${profile.slug}`,
+          `Vendor Card: https://sbda.stellaruc.com/vendor/${profile.slug}`,
         ], email),
       ]);
       return json({ok:true,profile:{business_name:profile.business_name,slug:profile.slug},created},200,{
@@ -1440,7 +1440,7 @@ export default async (req) => {
       });
       if (!profile) return json({ok:false,error:'Vendor Page could not be provisioned.'},500);
 
-      // Preserve the FCP capability context on the Vendor Card. BODA still
+      // Preserve the FCP capability context on the Vendor Card. SBDA still
       // performs its own live SAM.gov search; FCP supplies only the verified
       // contractor inputs required to reproduce that search independently.
       if (contractorType === 'federal' && contractorProfile) {

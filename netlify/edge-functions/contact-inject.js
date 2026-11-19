@@ -53,7 +53,7 @@ const contactSection = `
     <div class="contact-copy reveal">
       <div class="eyebrow">Contact the Agency</div>
       <h2 class="section-title" id="contact-title">YOUR NEXT STEP - CONTACT US</h2>
-      <p>Tell us about your business needs, partnership interests, or questions about BODA resources.</p>
+      <p>Tell us about your business needs, partnership interests, or questions about SBDA resources.</p>
       <p class="contact-note">Your inquiry is sent directly to the Agency for review.</p>
     </div>
 
@@ -113,7 +113,7 @@ const contactSection = `
 
       <div class="consent-row">
         <input id="inq-consent" name="consent" type="checkbox" required>
-        <label for="inq-consent">I agree to be contacted by BUSINESS OPPORTUNITY DEVELOPMENT AGENCY regarding this inquiry and acknowledge the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</label>
+        <label for="inq-consent">I agree to be contacted by STELLAR BUSINESS DEVELOPMENT AGENCY regarding this inquiry and acknowledge the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</label>
       </div>
 
       <div class="form-actions">
@@ -160,7 +160,7 @@ const contactScript = `
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.ok) throw new Error(result.message || 'We could not send your inquiry right now.');
       try {
-        if (['boda.stellaruc.com'].includes(location.hostname) && window.gtag) {
+        if (['sbda.stellaruc.com'].includes(location.hostname) && window.gtag) {
           const services = { 'Contract Preparedness': 'contract_preparedness', 'Business Opportunity': 'business_opportunity', 'Procurement Intelligence': 'procurement_intelligence', 'Partnership': 'partnership', 'Funding or Sponsorship': 'funding', 'General Inquiry': 'general' };
           window.gtag('event', 'generate_lead', { send_to: 'G-VXX1P92PHS', service: services[data.inquiryType] || 'general', page_location: location.origin + location.pathname });
         }

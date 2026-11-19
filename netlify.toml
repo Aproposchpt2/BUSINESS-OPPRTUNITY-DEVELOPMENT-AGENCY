@@ -11,16 +11,22 @@
   path = "/index.html"
 
 # Keep the aggregate counter same-origin for previews and custom domains.
-# Former BODA domain. Forward every path to the same path on the current domain.
+# Former domains. Forward every path to the same path on the current domain.
+[[redirects]]
+  from = "https://boda.stellaruc.com/*"
+  to = "https://sbda.stellaruc.com/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "https://aproposopportunity.org/*"
-  to = "https://boda.stellaruc.com/:splat"
+  to = "https://sbda.stellaruc.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://www.aproposopportunity.org/*"
-  to = "https://boda.stellaruc.com/:splat"
+  to = "https://sbda.stellaruc.com/:splat"
   status = 301
   force = true
 
@@ -48,7 +54,7 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 # Retired application routes from the previous site now return visitors
-# to the BUSINESS OPPORTUNITY DEVELOPMENT AGENCY homepage.
+# to the STELLAR BUSINESS DEVELOPMENT AGENCY homepage.
 [[redirects]]
   from = "/dashboard"
   to = "/"

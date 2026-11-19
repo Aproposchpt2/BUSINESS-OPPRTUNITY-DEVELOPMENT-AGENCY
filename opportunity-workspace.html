@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Your Complimentary Contract Opportunity | BUSINESS OPPORTUNITY DEVELOPMENT AGENCY</title>
+<title>Your Complimentary Contract Opportunity | STELLAR BUSINESS DEVELOPMENT AGENCY</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@ main{padding:38px 0 90px}.panel{background:rgba(255,255,255,.06);border:1px soli
 </style>
 </head>
 <body>
-<header class="boda-header" id="bodaHeader"><div class="boda-hinner"><a class="boda-brand" href="/" aria-label="Business Opportunity Development Agency home"><span class="boda-rule" aria-hidden="true"></span><span><strong>BUSINESS OPPORTUNITY DEVELOPMENT AGENCY</strong></span></a><button class="boda-toggle" id="bodaToggle" type="button" aria-expanded="false" aria-controls="bodaNav">Menu</button><nav class="boda-nav" id="bodaNav" aria-label="Site navigation"><a href="/">Home</a><a href="/contract-preparedness">Contract Preparedness</a><a href="/business-development-marketing-engine">Marketing Engine</a><a class="boda-cta" href="/claim">Claim an Opportunity</a></nav></div></header>
+<header class="boda-header" id="bodaHeader"><div class="boda-hinner"><a class="boda-brand" href="/" aria-label="Stellar Business Development Agency home"><span class="boda-rule" aria-hidden="true"></span><span><strong>STELLAR BUSINESS DEVELOPMENT AGENCY</strong></span></a><button class="boda-toggle" id="bodaToggle" type="button" aria-expanded="false" aria-controls="bodaNav">Menu</button><nav class="boda-nav" id="bodaNav" aria-label="Site navigation"><a href="/">Home</a><a href="/contract-preparedness">Contract Preparedness</a><a href="/business-development-marketing-engine">Marketing Engine</a><a class="boda-cta" href="/claim">Claim an Opportunity</a></nav></div></header>
 <div class="boda-spacer" aria-hidden="true"></div>
 <section class="hero"><div class="shell"><span class="pill">Complimentary Contract Opportunity</span><div class="eyebrow">Your Opportunity Workspace</div><h1 id="heroTitle">Loading your contract opportunity…</h1><p class="lead" id="heroLead">Apropos identified this opportunity for your business. Review the details, then use the authoritative procurement source for the official solicitation and submission requirements.</p><div id="heroMeta" class="meta"></div></div></section>
 <main><div class="shell" id="app"></div></main>
@@ -42,10 +42,10 @@ function vendorPagePanel(){
  const slug=sessionStorage.getItem('aboaVendorSlug');
  const name=esc(claim.business_name||'your business');
  const initials=(claim.business_name||'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'BA';
- const tag=slug?'Verified Business Opportunity Development Agency Vendor':'Business Opportunity Development Agency Vendor';
+ const tag=slug?'Verified Stellar Business Development Agency Vendor':'Stellar Business Development Agency Vendor';
  const body=slug
-   ?'<p class="note">A Vendor Page for '+name+' has already been created from this claim, pre-filled with what the Business Opportunity Development Agency knows. Review and publish it whenever you\'re ready.</p><div class="actions"><a class="btn gold" href="/vendor-workspace">Manage Your Vendor Page</a></div>'
-   :'<p class="note">Present '+name+' to customers, buyers, and teaming partners with a verified Business Opportunity Development Agency Vendor Page.</p><div class="actions"><a class="btn outline" href="/vendor-claim">Set Up Your Vendor Page</a></div>';
+   ?'<p class="note">A Vendor Page for '+name+' has already been created from this claim, pre-filled with what the Stellar Business Development Agency knows. Review and publish it whenever you\'re ready.</p><div class="actions"><a class="btn gold" href="/vendor-workspace">Manage Your Vendor Page</a></div>'
+   :'<p class="note">Present '+name+' to customers, buyers, and teaming partners with a verified Stellar Business Development Agency Vendor Page.</p><div class="actions"><a class="btn outline" href="/vendor-claim">Set Up Your Vendor Page</a></div>';
  const frame='<div class="vp-frame"><div class="vp-head"><div class="vp-badge">'+esc(initials)+'</div><div><div class="vp-tag">'+tag+'</div><div class="vp-name">'+name+'</div></div></div><div class="vp-body">'+body+'</div></div>';
  return '<section class="panel"><div class="eyebrow" style="color:var(--gold)">Business Presence</div><h2>Your Vendor Page</h2>'+frame+'</section>';
 }
@@ -135,7 +135,7 @@ async function downloadContractPdf(o,business){
   const para=(t,size=10.5,gap=6)=>{doc.setFont('helvetica','normal');doc.setFontSize(size);doc.setTextColor(30,41,59);doc.splitTextToSize(String(t||''),R-L).forEach(line=>{need(size+4);doc.text(line,L,y);y+=size+4});y+=gap};
   const head=t=>{need(34);y+=8;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(8,26,49);doc.text(t,L,y);y+=6;doc.setDrawColor(199,167,90);doc.setLineWidth(1);doc.line(L,y,R,y);y+=16};
   doc.setFillColor(8,26,49);doc.rect(0,0,W,96,'F');doc.setFillColor(199,167,90);doc.rect(0,96,W,4,'F');
-  doc.setTextColor(234,217,165);doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.text('BUSINESS OPPORTUNITY DEVELOPMENT AGENCY  ·  COMPLIMENTARY CONTRACT OPPORTUNITY',L,34);
+  doc.setTextColor(234,217,165);doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.text('STELLAR BUSINESS DEVELOPMENT AGENCY  ·  COMPLIMENTARY CONTRACT OPPORTUNITY',L,34);
   doc.setTextColor(255,255,255);doc.setFont('times','normal');doc.setFontSize(20);doc.splitTextToSize(o.title||'Government Contract Opportunity',R-L).slice(0,2).forEach((t,i)=>doc.text(t,L,60+i*22));
   y=128;
   if(business)para('Prepared for '+business,10,4);
@@ -145,7 +145,7 @@ async function downloadContractPdf(o,business){
   head('Scope of Work');para(o.plain_language_summary||o.scope_summary||'See the official solicitation for the complete scope.');
   if(list(o.fulfillment_requirements).length){head('What You Need to Fulfill This Contract');list(o.fulfillment_requirements).forEach(x=>para('•  '+x,10.5,2))}
   head('Official Solicitation');para('The issuing authority is the source of truth. Review all solicitation documents, amendments, forms, instructions, and submission requirements at:');if(o.authoritative_url){doc.setTextColor(15,42,106);doc.setFontSize(10);need(16);doc.textWithLink(o.authoritative_url.slice(0,95),L,y,{url:o.authoritative_url});y+=18}
-  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,130,145);doc.text('Business Opportunity Development Agency · A property of Apropos Group LLC · boda.stellaruc.com',L,H-30);doc.text('Page '+i+' of '+pages,R,H-30,{align:'right'})}
+  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,130,145);doc.text('Stellar Business Development Agency · A property of Apropos Group LLC · sbda.stellaruc.com',L,H-30);doc.text('Page '+i+' of '+pages,R,H-30,{align:'right'})}
   doc.save(((o.solicitation_number||o.title||'Contract').replace(/[^A-Za-z0-9-]+/g,'_').slice(0,60))+'_Contract_Opportunity.pdf');
   m.textContent='Your contract PDF has been downloaded.';m.className='delivery-note ok';
  }catch(e){m.textContent=e.message||'The PDF could not be created. Please try again.';m.className='delivery-note bad'}
@@ -159,7 +159,7 @@ function renderBcp(d){
  const aside=app.querySelector('aside');
  const url=o.authoritative_url||'';
  aside.innerHTML='<section class="panel"><div class="eyebrow" style="color:var(--gold)">Keep This Opportunity</div><h2>Download or Print Your Contract</h2><p class="note">Save a copy of this contract opportunity for your records.</p><div class="delivery-actions"><button class="btn" id="downloadPdf">Download Contract (PDF)</button><button class="btn outline" id="printContract">Print Contract</button></div><div id="bcpMsg" class="delivery-note" role="status" aria-live="polite"></div></section>'
-  +'<section class="panel vc-cta"><div class="eyebrow" style="color:var(--gold)">Complimentary</div><h2>Claim your FREE BUSINESS VENDOR CARD</h2><p class="note">Present '+esc(business||'your business')+' to government buyers, prime contractors, and customers. Add your contact details, services, and hours.</p><button class="btn gold vc-btn" id="claimVendorCard">Claim your FREE BUSINESS VENDOR CARD →</button><p class="delivery-note">By claiming, you authorize the Business Opportunity Development Agency to list your business in its Vendor Registry.</p><div id="vcMsg" class="delivery-note" role="status" aria-live="polite"></div></section>'
+  +'<section class="panel vc-cta"><div class="eyebrow" style="color:var(--gold)">Complimentary</div><h2>Claim your FREE BUSINESS VENDOR CARD</h2><p class="note">Present '+esc(business||'your business')+' to government buyers, prime contractors, and customers. Add your contact details, services, and hours.</p><button class="btn gold vc-btn" id="claimVendorCard">Claim your FREE BUSINESS VENDOR CARD →</button><p class="delivery-note">By claiming, you authorize the Stellar Business Development Agency to list your business in its Vendor Registry.</p><div id="vcMsg" class="delivery-note" role="status" aria-live="polite"></div></section>'
   +'<section class="panel"><h2>Official Solicitation</h2><div class="notice"><strong>The issuing authority is the source of truth.</strong><br>Review all solicitation documents, amendments, forms, instructions, and submission requirements at the authoritative procurement source.</div><div class="actions">'+(url?'<a class="btn outline" target="_blank" rel="noopener noreferrer" href="'+esc(url)+'">Open Authoritative Procurement Site</a>':'<span class="note">The authoritative procurement link is not currently available.</span>')+'</div></section>';
  document.getElementById('downloadPdf').addEventListener('click',()=>downloadContractPdf(o,business));
  document.getElementById('printContract').addEventListener('click',()=>{const m=document.getElementById('bcpMsg');window.addEventListener('afterprint',()=>{m.textContent='Your contract was sent to print.';m.className='delivery-note ok'},{once:true});window.print()});
@@ -192,6 +192,6 @@ async function load(){
 load();
 const _bt=document.getElementById('bodaToggle'),_bn=document.getElementById('bodaNav');if(_bt&&_bn){_bt.addEventListener('click',()=>{const o=_bn.classList.toggle('open');_bt.setAttribute('aria-expanded',o);document.body.classList.toggle('nav-open',o);});}
 </script>
-<footer class="footer"><strong style="color:#fff">Business Opportunity Development Agency</strong><br>A property of <strong style="color:#fff">Apropos Group LLC</strong></footer>
+<footer class="footer"><strong style="color:#fff">Stellar Business Development Agency</strong><br>A property of <strong style="color:#fff">Apropos Group LLC</strong></footer>
 </body>
 </html>
