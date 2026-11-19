@@ -150,7 +150,7 @@ body > footer,.footer{
 @media (min-width:981px){
   /* Pin the message to the left so the skyscraper fills the right side. */
   .sbda-hero > .wrap{max-width:none;margin:0;width:100%;padding-left:clamp(24px,3.2vw,58px);padding-right:clamp(24px,2.5vw,48px)}
-  .sbda-hero .sbda-hero-content{max-width:min(40vw,560px)}
+  .sbda-hero .sbda-hero-content{max-width:min(48vw,660px)}
 }
 .sbda-hero .kicker{
   display:inline-flex;
@@ -172,7 +172,10 @@ body > footer,.footer{
 }
 .sbda-hero h1{
   color:#fff;
-  font-size:clamp(2.6rem,4.6vw,4.95rem);
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+  font-size:clamp(2rem,4vw,4.4rem);
   line-height:.98;
   margin:0 0 14px;
   text-shadow:0 5px 30px rgba(0,0,0,.3);
