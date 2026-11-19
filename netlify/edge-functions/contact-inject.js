@@ -51,7 +51,7 @@ const contactSection = `
   <div class="shell contact-grid">
     <div class="contact-copy reveal">
       <div class="eyebrow">Contact the Agency</div>
-      <h2 class="section-title" id="contact-title">Start an inquiry.</h2>
+      <h2 class="section-title" id="contact-title">YOUR NEXT STEP - CONTACT US</h2>
       <p>Tell us about your business needs, partnership interests, or questions about BODA resources.</p>
       <p class="contact-note">Your inquiry is sent directly to the Agency for review.</p>
     </div>
