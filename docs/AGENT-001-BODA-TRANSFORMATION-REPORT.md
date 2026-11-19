@@ -13,13 +13,13 @@ Status: DEVELOPMENT ONLY; production deployment not authorized.
 ## Implemented on this branch
 - Replaced public homepage with responsive black/gold/white STELLAR discovery page.
 - Added six STELLAR solution cards, consultation CTA, complimentary BDMS gateway, and formation-service regulatory-review notice.
-- Updated homepage title, description, canonical and JSON-LD for boda.aproposgroupllc.com.
+- Updated homepage title, description, canonical and JSON-LD for boda.stellaruc.com.
 - Updated llms.txt to remove procurement-service promotional positioning.
 - No changes to Netlify functions, database migrations, legacy HTML routes, or BDMS application.
 
 ## Remaining blockers / acceptance checks
 1. Inspect all secondary public HTML pages, sitemap.xml, robots.txt, navigation and canonical tags for obsolete promotions. Decide whether legacy service URLs should redirect, be archived, or remain accessible without promotion. Do not remove functional workspaces.
-2. Confirm canonical-domain policy for aproposopportunity.org versus boda.aproposgroupllc.com before production.
+2. Confirm canonical-domain policy for aproposopportunity.org versus boda.stellaruc.com before production.
 3. Verify contact-inject edge function does not inject obsolete procurement content or break new homepage.
 4. Confirm target URLs resolve and product demo/consultation flows function.
 5. Coordinate the BDMS destination and public-access status with Agent 002. Do not edit BDMS.

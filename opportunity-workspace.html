@@ -145,7 +145,7 @@ async function downloadContractPdf(o,business){
   head('Scope of Work');para(o.plain_language_summary||o.scope_summary||'See the official solicitation for the complete scope.');
   if(list(o.fulfillment_requirements).length){head('What You Need to Fulfill This Contract');list(o.fulfillment_requirements).forEach(x=>para('•  '+x,10.5,2))}
   head('Official Solicitation');para('The issuing authority is the source of truth. Review all solicitation documents, amendments, forms, instructions, and submission requirements at:');if(o.authoritative_url){doc.setTextColor(15,42,106);doc.setFontSize(10);need(16);doc.textWithLink(o.authoritative_url.slice(0,95),L,y,{url:o.authoritative_url});y+=18}
-  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,130,145);doc.text('Business Opportunity Development Agency · A property of Apropos Group LLC · boda.aproposgroupllc.com',L,H-30);doc.text('Page '+i+' of '+pages,R,H-30,{align:'right'})}
+  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,130,145);doc.text('Business Opportunity Development Agency · A property of Apropos Group LLC · boda.stellaruc.com',L,H-30);doc.text('Page '+i+' of '+pages,R,H-30,{align:'right'})}
   doc.save(((o.solicitation_number||o.title||'Contract').replace(/[^A-Za-z0-9-]+/g,'_').slice(0,60))+'_Contract_Opportunity.pdf');
   m.textContent='Your contract PDF has been downloaded.';m.className='delivery-note ok';
  }catch(e){m.textContent=e.message||'The PDF could not be created. Please try again.';m.className='delivery-note bad'}
