@@ -92,7 +92,7 @@ export default async (req) => {
     // business-development-roadmap.html) so it can be set the moment Jeff
     // creates the live $1,295 Price in Stripe, with zero code changes. The
     // Payment Link's own success_url must be configured in Stripe to
-    // https://boda.aproposgroupllc.com/roadmap-intake?session_id={CHECKOUT_SESSION_ID}.
+    // https://boda.stellaruc.com/roadmap-intake?session_id={CHECKOUT_SESSION_ID}.
     if (req.method === 'GET' && action === 'checkout') {
       const link = Netlify.env.get('BODA_ROADMAP_PAYMENT_LINK_URL');
       if (!link) {

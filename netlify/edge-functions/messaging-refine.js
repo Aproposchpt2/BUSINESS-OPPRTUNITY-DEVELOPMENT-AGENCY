@@ -41,8 +41,8 @@ function refineMessaging(html) {
       '"description": "Apropos Business Opportunity Agency expands pathways to economic opportunity so businesses can grow, participate, employ people, engage suppliers, and strengthen communities."'
     ],
     [
-      '"@id": "https://boda.aproposgroupllc.com/#procurement-intelligence"',
-      '"@id": "https://boda.aproposgroupllc.com/#opportunity-development"'
+      '"@id": "https://boda.stellaruc.com/#procurement-intelligence"',
+      '"@id": "https://boda.stellaruc.com/#opportunity-development"'
     ],
     [
       '"name": "Procurement Intelligence and Business Opportunity Development"',
@@ -53,8 +53,8 @@ function refineMessaging(html) {
       '"serviceType": "Opportunity development"'
     ],
     [
-      '"url": "https://boda.aproposgroupllc.com/#marketplace",\n      "description": "Procurement intelligence and opportunity-development support designed to help businesses discover and pursue relevant government contracting, supplier, subcontracting, and growth opportunities."',
-      '"url": "https://boda.aproposgroupllc.com/#development",\n      "description": "Opportunity-development support connecting businesses with government contracting, buyers, suppliers, capital, resources, partnerships, market-expansion pathways, and other opportunities that can contribute to economic growth."'
+      '"url": "https://boda.stellaruc.com/#marketplace",\n      "description": "Procurement intelligence and opportunity-development support designed to help businesses discover and pursue relevant government contracting, supplier, subcontracting, and growth opportunities."',
+      '"url": "https://boda.stellaruc.com/#development",\n      "description": "Opportunity-development support connecting businesses with government contracting, buyers, suppliers, capital, resources, partnerships, market-expansion pathways, and other opportunities that can contribute to economic growth."'
     ],
     [
       '<div class="hero-positioning" aria-label="Creating business success through procurement intelligence">',
