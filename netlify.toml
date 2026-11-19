@@ -11,6 +11,19 @@
   path = "/index.html"
 
 # Keep the aggregate counter same-origin for previews and custom domains.
+# Former BODA domain. Forward every path to the same path on the current domain.
+[[redirects]]
+  from = "https://aproposopportunity.org/*"
+  to = "https://boda.stellaruc.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.aproposopportunity.org/*"
+  to = "https://boda.stellaruc.com/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/api/boda-opportunity-counts"
   to = "https://bcp.aproposgroupllc.com/.netlify/functions/boda-opportunity-counts"
