@@ -25,6 +25,7 @@ const contactStyles = `
   .inquiry-submit:hover{transform:translateY(-2px)}
   .inquiry-submit:disabled{opacity:.55;cursor:wait;transform:none}
   .form-status{margin:0;min-height:24px;font-size:.82rem;color:var(--gold-light)}
+  .form-status a{color:var(--gold-light);text-decoration:underline;text-underline-offset:3px}
   .form-status.error{color:#ffd0c8}
   .honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
   /* Premium Presence: distinct, highly visible bubble-style intake controls. */
@@ -164,7 +165,18 @@ const contactScript = `
           window.gtag('event', 'generate_lead', { send_to: 'G-VXX1P92PHS', service: services[data.inquiryType] || 'general', page_location: location.origin + location.pathname });
         }
       } catch (_) { /* Analytics must not affect a successful inquiry. */ }
-      status.textContent = result.message || 'Thank you. Your inquiry has been sent to the Agency.';
+      status.textContent = '';
+      status.appendChild(document.createTextNode((result.message || 'Thank you. Your inquiry has been sent to the Agency.') + ' '));
+      const invite = document.createElement('strong');
+      invite.textContent = 'Experience a live Demo of our Intelligent Business Operations Systems — visit ';
+      const demoLink = document.createElement('a');
+      demoLink.href = 'https://stellaruc.com/';
+      demoLink.target = '_blank';
+      demoLink.rel = 'noopener';
+      demoLink.textContent = 'stellaruc.com';
+      invite.appendChild(demoLink);
+      invite.appendChild(document.createTextNode('.'));
+      status.appendChild(invite);
       form.reset();
       delete form.dataset.submissionId;
     } catch (error) {
