@@ -222,3 +222,11 @@ body > footer,.footer{
   font-family:var(--sbda-body);
   font-weight:900;
 }
+
+/* Gold italic phrases inside headings use Fraunces (Cinzel has no italic). */
+h1 em,h2 em,h3 em,h1 i,h2 i{
+  font-family:var(--sbda-accent);
+  font-style:italic;
+  font-weight:600;
+  letter-spacing:0;
+}
