@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vendor Profile | Business Opportunity Development Agency</title>
+<title>Vendor Profile | Stellar Business Development Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -253,9 +253,9 @@ body.registry-page .rc-layout .rc-service{font-family:var(--serif)}
 <body>
 <header class="boda-header" id="bodaHeader">
   <div class="boda-hinner">
-    <a class="boda-brand" href="/" aria-label="Business Opportunity Development Agency home">
+    <a class="boda-brand" href="/" aria-label="Stellar Business Development Agency home">
       <span class="boda-rule" aria-hidden="true"></span>
-      <span><strong>BUSINESS OPPORTUNITY DEVELOPMENT AGENCY</strong></span>
+      <span><strong>STELLAR BUSINESS DEVELOPMENT AGENCY</strong></span>
     </a>
     <button class="boda-toggle" id="bodaToggle" type="button" aria-expanded="false" aria-controls="bodaNav">Menu</button>
     <nav class="boda-nav" id="bodaNav" aria-label="Site navigation">
@@ -298,7 +298,7 @@ async function downloadContractPdf(o,business){
   const para=(t,size=10.5,gap=6)=>{doc.setFont('helvetica','normal');doc.setFontSize(size);doc.setTextColor(30,41,59);doc.splitTextToSize(String(t||''),R-L).forEach(line=>{need(size+4);doc.text(line,L,y);y+=size+4});y+=gap};
   const head=t=>{need(34);y+=8;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(8,26,49);doc.text(t,L,y);y+=6;doc.setDrawColor(199,167,90);doc.setLineWidth(1);doc.line(L,y,R,y);y+=16};
   doc.setFillColor(8,26,49);doc.rect(0,0,W,96,'F');doc.setFillColor(199,167,90);doc.rect(0,96,W,4,'F');
-  doc.setTextColor(234,217,165);doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.text('BUSINESS OPPORTUNITY DEVELOPMENT AGENCY  ·  COMPLIMENTARY CONTRACT OPPORTUNITY',L,34);
+  doc.setTextColor(234,217,165);doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.text('STELLAR BUSINESS DEVELOPMENT AGENCY  ·  COMPLIMENTARY CONTRACT OPPORTUNITY',L,34);
   doc.setTextColor(255,255,255);doc.setFont('times','normal');doc.setFontSize(20);doc.splitTextToSize(o.title||'Government Contract Opportunity',R-L).slice(0,2).forEach((t,i)=>doc.text(t,L,60+i*22));
   y=128;
   if(business)para('Prepared for '+business,10,4);
@@ -307,13 +307,13 @@ async function downloadContractPdf(o,business){
   head('Scope of Work');para(o.scope_summary||'See the official solicitation for the complete scope.');
   head('Official Solicitation');para('The issuing authority is the source of truth. Review all solicitation documents, amendments, forms, instructions, and submission requirements at:');
   if(o.authoritative_url){doc.setTextColor(15,42,106);doc.setFontSize(10);need(16);doc.textWithLink(o.authoritative_url.slice(0,95),L,y,{url:o.authoritative_url});y+=18}
-  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,130,145);doc.text('Business Opportunity Development Agency · A property of Apropos Group LLC · boda.stellaruc.com',L,H-30);doc.text('Page '+i+' of '+pages,R,H-30,{align:'right'})}
+  const pages=doc.getNumberOfPages();for(let i=1;i<=pages;i++){doc.setPage(i);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(120,130,145);doc.text('Stellar Business Development Agency · A property of Apropos Group LLC · sbda.stellaruc.com',L,H-30);doc.text('Page '+i+' of '+pages,R,H-30,{align:'right'})}
   doc.save(((o.solicitation_number||o.title||'Contract').replace(/[^A-Za-z0-9-]+/g,'_').slice(0,60))+'_Contract_Opportunity.pdf');
 }
 
 function renderRegistryCard(p){
   const app=document.getElementById('app');
-  document.title=p.business_name+' | BODA Business Registry';
+  document.title=p.business_name+' | SBDA Business Registry';
   document.body.classList.add('registry-page');
   app.classList.add('registry-wide');
   const loc=[p.city,p.state].filter(Boolean).join(', ');
@@ -464,7 +464,7 @@ async function load(){
     if(!r.ok||!d.ok)throw new Error('This Vendor Page is not currently published.');
     const p=d.profile;
     if(p.registry_card){renderRegistryCard(p);return;}
-    document.title=p.business_name+' | Business Opportunity Development Agency';
+    document.title=p.business_name+' | Stellar Business Development Agency';
     const loc=[p.city,p.state].filter(Boolean).join(', ');
     const caps=(p.core_capabilities||[]).slice(0,6);
     const certs=(p.certifications||[]).slice(0,10);
@@ -495,7 +495,7 @@ async function load(){
       :'';
 
     app.innerHTML='<article class="card">'
-      +'<section class="hero"><div class="agency">Business Opportunity Development Agency &middot; Vendor Presence</div>'
+      +'<section class="hero"><div class="agency">Stellar Business Development Agency &middot; Vendor Presence</div>'
       +'<div class="profile-head"><div class="logo"'+(p.logo_url?' style="background-image:url('+encodeURI(p.logo_url)+');background-size:cover;background-position:center;color:transparent"':'')+'>'+esc(initials(p.business_name))+'</div>'
       +'<div><div class="verified">Verified Agency Vendor</div><h1>'+esc(p.business_name)+'</h1>'+(loc?'<div class="sub">'+esc(loc)+'</div>':'')+'</div></div>'
       +'<div class="status">'+(p.sam_registration_status?'<div class="pill">SAM '+esc(p.sam_registration_status)+'</div>':'')+(caps.length?'<div class="pill">Capability Profile Active</div>':'')+'</div>'
@@ -531,11 +531,11 @@ async function load(){
       +(mail?'<a class="button" href="'+mail+'">'+esc(p.customer_cta_label||'Contact This Business')+'</a>':(p.website?'<a class="button" href="'+esc(p.website)+'">Visit Business Website</a>':''))
       +'</div>')
       +'</section>'
-      +'<footer class="footer"><strong>BUSINESS OPPORTUNITY DEVELOPMENT AGENCY</strong><br>A property of Apropos Group LLC</footer>'
+      +'<footer class="footer"><strong>STELLAR BUSINESS DEVELOPMENT AGENCY</strong><br>A property of Apropos Group LLC</footer>'
       +'</article>'
       +'<div class="modal-overlay" id="claimModalOverlay"><div class="modal">'
       +'<div class="eyebrow">Claim This Business — Free</div><h2>Claim Your Business</h2>'
-      +'<label class="consent"><input type="checkbox" id="registryConsent"> Authorize Business Opportunity Development Agency to add '+esc(p.business_name)+' to our Vendor Registry for public search view.</label>'
+      +'<label class="consent"><input type="checkbox" id="registryConsent"> Authorize Stellar Business Development Agency to add '+esc(p.business_name)+' to our Vendor Registry for public search view.</label>'
       +'<div id="claimModalStatus" class="modal-status"></div>'
       +'<button class="button" id="confirmClaimBtn">Confirm &amp; Continue →</button>'
       +'<button class="button-outline" id="cancelClaimBtn">Cancel</button>'

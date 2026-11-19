@@ -1,6 +1,6 @@
 // Business Development Marketing Engine -- managed campaign execution
 // against an approved Business Development Roadmap. Built 2026-10-06,
-// dependent on roadmap.mjs / BODA issue #19.
+// dependent on roadmap.mjs / SBDA issue #19.
 //
 // SENDING IS DELIBERATELY INERT IN THIS BUILD. admin-queue-outreach writes
 // boda_marketing_outreach_events rows with status='READY_TO_SEND' and never

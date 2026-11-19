@@ -125,7 +125,7 @@ export default async (req) => {
     const url = new URL(req.url);
     const action = clean(url.searchParams.get('action') || 'bootstrap', 80);
     const boda = await sessionProfile(req);
-    if (!boda) return json({ ok: false, error: 'BODA business session required.' }, 401);
+    if (!boda) return json({ ok: false, error: 'SBDA business session required.' }, 401);
 
     const entitlement = await entitlementFor(boda.id);
     const profile = await fdcProfileFor(boda.id);
