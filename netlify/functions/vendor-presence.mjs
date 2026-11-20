@@ -1564,7 +1564,7 @@ export default async (req) => {
       });
       if (!profile) return json({ok:false,error:'Vendor Page could not be provisioned.'},500);
 
-      // Preserve the FCP capability context on the Vendor Card. SBDA still
+      // Preserve the FCP capability context on the Vendor Card. Stellar Business Development Agency still
       // performs its own live SAM.gov search; FCP supplies only the verified
       // contractor inputs required to reproduce that search independently.
       if (contractorType === 'federal' && contractorProfile) {

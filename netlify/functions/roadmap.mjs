@@ -1,5 +1,5 @@
 // Business Development Roadmap -- order, intake, customer workspace, and
-// operator workflow. Built from SBDA issue #19 (2026-10-06). Payment is
+// operator workflow. Built from Stellar Business Development Agency issue #19 (2026-10-06). Payment is
 // verified server-side against the AI4 Product Purchasing hub's
 // product_entitlements table (same cross-project pattern as
 // vendor-presence.mjs's checkEntitlement) -- a client-supplied email/session
