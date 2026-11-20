@@ -50,7 +50,7 @@ async function captureInCeoc({ name, organization, email, phone, state, inquiryT
         email,
         phone: phone || null,
         preferred_channel: "email",
-        lead_source: "SBDA Website",
+        lead_source: "Stellar Business Development Agency Website",
         tags: ["boda", "website_inquiry"],
         metadata: {
           source: "boda_web_contact_form",
@@ -104,13 +104,13 @@ async function captureInCeoc({ name, organization, email, phone, state, inquiryT
       contact_id: contactId,
       originating_interaction_id: interactionId,
       originating_channel: "email",
-      title: `SBDA: ${inquiryType} — ${organization || name}`.slice(0, 240),
+      title: `Stellar Business Development Agency: ${inquiryType} — ${organization || name}`.slice(0, 240),
       service_interest: inquiryType,
       description: message,
       pipeline_stage: "new",
       status: "open",
       priority: "normal",
-      next_action: "Review SBDA inquiry and contact prospect",
+      next_action: "Review Stellar Business Development Agency inquiry and contact prospect",
       metadata: {
         source: "boda_web_contact_form",
         business_name: organization || null,
@@ -174,7 +174,7 @@ export default async (request) => {
 
   const safe = (v) => String(v).replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
   const receivedAt = new Date().toISOString();
-  const subject = `[SBDA Inquiry] ${inquiryType} — ${(organization || name).replace(/[\r\n]+/g, " ").slice(0, 120)}`;
+  const subject = `[Stellar Business Development Agency Inquiry] ${inquiryType} — ${(organization || name).replace(/[\r\n]+/g, " ").slice(0, 120)}`;
   const text = `STELLAR BUSINESS DEVELOPMENT AGENCY\nNEW WEBSITE INQUIRY\n\nInquiry Type: ${inquiryType}\nName: ${name}\nBusiness / Organization: ${organization || "Not provided"}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\nState: ${state}\nReceived: ${receivedAt}\n\nMessage:\n${message}`;
   const html = `<div style="font-family:Arial,sans-serif;color:#101b2c"><h2 style="color:#06162f">STELLAR BUSINESS DEVELOPMENT AGENCY — New Inquiry</h2><p><strong>Inquiry Type:</strong> ${safe(inquiryType)}</p><p><strong>Name:</strong> ${safe(name)}</p><p><strong>Business / Organization:</strong> ${safe(organization || "Not provided")}</p><p><strong>Email:</strong> ${safe(email)}</p><p><strong>Phone:</strong> ${safe(phone || "Not provided")}</p><p><strong>State:</strong> ${safe(state)}</p><hr><p>${safe(message).replace(/\n/g,"<br>")}</p><hr><small>Received ${safe(receivedAt)}. Visitor consented to be contacted regarding this inquiry.</small></div>`;
 
@@ -186,7 +186,7 @@ export default async (request) => {
     capture = await captureInCeoc(payload);
     if (!capture?.contact_id || !capture?.interaction_id || !capture?.lead_id) throw new Error("Incomplete CEOC capture");
   } catch (error) {
-    console.error("SBDA inquiry CEOC capture failed:", { submissionId, error: String(error) });
+    console.error("Stellar Business Development Agency inquiry CEOC capture failed:", { submissionId, error: String(error) });
     return Response.json({ ok: false, message: "We could not save your inquiry right now. Please try again." }, { status: 503 });
   }
 
@@ -200,10 +200,10 @@ export default async (request) => {
       });
       if (!res.ok) throw new Error(`Resend ${res.status}`);
     } catch (error) {
-      console.error("SBDA inquiry notification failed (lead saved):", { submissionId, error: String(error) });
+      console.error("Stellar Business Development Agency inquiry notification failed (lead saved):", { submissionId, error: String(error) });
     }
   } else {
-    console.warn("SBDA inquiry email notification unavailable (lead saved):", { submissionId });
+    console.warn("Stellar Business Development Agency inquiry email notification unavailable (lead saved):", { submissionId });
   }
   return Response.json({ ok: true, message: "Thank you. Your inquiry has been sent to the Agency." });
 };

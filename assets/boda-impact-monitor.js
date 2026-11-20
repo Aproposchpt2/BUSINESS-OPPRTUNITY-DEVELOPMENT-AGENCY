@@ -1,4 +1,4 @@
-/* SBDA opportunity monitor: aggregate counts only, never exposes recipient information. */
+/* Stellar Business Development Agency opportunity monitor: aggregate counts only, never exposes recipient information. */
 (() => {
   const number = document.getElementById('bodaImpactCount');
   const status = document.getElementById('bodaImpactStatus');
