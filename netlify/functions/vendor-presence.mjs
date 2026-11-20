@@ -571,6 +571,7 @@ const EDIT_CODE_SOURCE = 'registry_edit_code';
 const EDIT_SESSION_SOURCE = 'registry_edit_session';
 const EDIT_CODE_MINUTES = 10;
 const EDIT_SESSION_MINUTES = 30;
+const CONFIRM_SESSION_MINUTES = 24 * 60;
 const EDIT_CODE_MAX_ATTEMPTS = 5;
 const EDIT_CODE_MAX_PER_WINDOW = 3;
 const EDIT_CODE_WINDOW_MINUTES = 15;
@@ -596,6 +597,64 @@ const cardServices = value => (Array.isArray(value) ? value : String(value ?? ''
     ? { name: clean(item.name, 120), details: clean(item.details, 1000) }
     : { name: clean(item, 120), details: '' }))
   .filter(service => service.name).slice(0, 20);
+
+const SOCIAL_KEYS = ['facebook', 'instagram', 'linkedin', 'x', 'youtube', 'tiktok'];
+const cardSocial = value => {
+  const out = {};
+  if (!value || typeof value !== 'object') return out;
+  for (const key of SOCIAL_KEYS) {
+    const link = safeHttpUrl(value[key], 500);
+    if (link && link.startsWith('https://')) out[key] = link;
+  }
+  return out;
+};
+
+const PHOTO_BUCKET = 'vendor-card-photos';
+const MAX_CARD_PHOTOS = 8;
+const MAX_PHOTO_BYTES = 3 * 1024 * 1024;
+const photoPrefix = () => `${dbConfig().url}/storage/v1/object/public/${PHOTO_BUCKET}/`;
+const cardPhotos = value => (Array.isArray(value) ? value : [])
+  .map(item => clean(typeof item === 'object' && item ? item.url : item, 600))
+  .filter(link => link.startsWith(photoPrefix())).slice(0, MAX_CARD_PHOTOS);
+
+function imageType(bytes) {
+  if (bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return ['image/jpeg', 'jpg'];
+  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) return ['image/png', 'png'];
+  if (bytes.subarray(0, 4).toString('ascii') === 'RIFF' && bytes.subarray(8, 12).toString('ascii') === 'WEBP') return ['image/webp', 'webp'];
+  return null;
+}
+
+// Images are uploaded by the function with the service key only after the edit session is checked.
+async function storePhoto(profile, dataUrl) {
+  const m = /^data:image\/(?:jpeg|png|webp);base64,([A-Za-z0-9+/=]+)$/.exec(String(dataUrl || ''));
+  if (!m) return { error: 'Upload a JPG, PNG or WebP image.' };
+  const bytes = Buffer.from(m[1], 'base64');
+  if (!bytes.length || bytes.length > MAX_PHOTO_BYTES) return { error: 'Images must be smaller than 3 MB.' };
+  const type = imageType(bytes);
+  if (!type) return { error: 'Upload a JPG, PNG or WebP image.' };
+  const { url, key } = dbConfig();
+  const path = `${profile.id}/${Date.now()}-${randomBytes(6).toString('hex')}.${type[1]}`;
+  const r = await fetch(`${url}/storage/v1/object/${PHOTO_BUCKET}/${path}`, {
+    method: 'POST',
+    headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': type[0], 'cache-control': 'max-age=31536000' },
+    body: bytes
+  });
+  if (!r.ok) {
+    console.error('vendor card photo upload failed', r.status);
+    throw new Error('Photo storage is unavailable.');
+  }
+  return { link: photoPrefix() + path };
+}
+
+async function removeStoredPhoto(link) {
+  if (!link || !link.startsWith(photoPrefix())) return;
+  const { url, key } = dbConfig();
+  await fetch(`${url}/storage/v1/object/${PHOTO_BUCKET}`, {
+    method: 'DELETE',
+    headers: { apikey: key, authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+    body: JSON.stringify({ prefixes: [link.slice(photoPrefix().length)] })
+  }).catch(() => {});
+}
 
 async function isRegistryCard(profile) {
   if (!profile?.claim_id) return false;
@@ -638,6 +697,22 @@ async function sendCardEmail({ email, subject, heading, bodyHtml }) {
     console.error('vendor card email failed', r.status);
     throw new Error('Email could not be sent.');
   }
+}
+
+async function sendCardLiveEmail(profile) {
+  const cardUrl = `https://sbda.stellaruc.com/vendor/${encodeURIComponent(profile.slug)}`;
+  const editUrl = `https://sbda.stellaruc.com/vendor-edit?card=${encodeURIComponent(profile.slug)}`;
+  const safeName = String(profile.business_name).replace(/[<>&]/g, '');
+  await sendCardEmail({
+    email: profile.owner_email,
+    subject: `Your free Vendor Card is live — ${safeName}`,
+    heading: 'Your free Vendor Card is live',
+    bodyHtml: `<p>The Vendor Card for <strong>${safeName}</strong> is now published on the Stellar Business Development Agency site.</p>
+      <p><strong>Your Vendor Card link</strong> (share it anywhere):<br><a href="${cardUrl}">${cardUrl}</a></p>
+      <p style="margin:26px 0"><a href="${editUrl}" style="display:inline-block;background:#c7a75a;color:#081a31;padding:13px 20px;text-decoration:none;font-weight:700">Update My Vendor Card</a></p>
+      <p>Use this button any time to add your logo, photos, services, a description, hours and social media links. We'll email you a one-time code to sign in.</p>
+      <p style="font-size:12px;color:#657489">Keep this email so you can find your card again.</p>`
+  });
 }
 
 async function underCodeLimit(email) {
@@ -730,7 +805,11 @@ const editableCard = p => ({
   phone: p.phone || '',
   email: p.owner_email || '',
   show_email: Boolean(p.public_contact_email),
+  headline: p.headline || '',
   about: p.about || '',
+  logo_url: p.logo_url || '',
+  photos: cardPhotos(p.photos),
+  social_links: cardSocial(p.social_links),
   services: cardServices(p.products_services),
   naics: p.naics || [],
   hours_of_operation: p.hours_of_operation || '',
@@ -757,7 +836,9 @@ async function cardEdit(req, url, action) {
       return json({ ok: false, error: 'Invalid request.' }, 403, noStore);
     }
     const raw = await req.text();
-    if (raw.length > 40000) return json({ ok: false, error: 'Submission is too large.' }, 413, noStore);
+    if (raw.length > (action === 'card-photo-upload' ? 4600000 : 40000)) {
+      return json({ ok: false, error: action === 'card-photo-upload' ? 'Images must be smaller than 3 MB.' : 'Submission is too large.' }, 413, noStore);
+    }
     let input = {};
     try { input = raw ? JSON.parse(raw) : {}; } catch { return json({ ok: false, error: 'Invalid submission.' }, 400, noStore); }
 
@@ -821,7 +902,9 @@ async function cardEdit(req, url, action) {
         website,
         phone,
         public_contact_email: input.show_email ? profile.owner_email : '',
-        about: clean(input.about, 1000),
+        headline: clean(input.headline, 160),
+        about: clean(input.about, 2000),
+        social_links: cardSocial(input.social_links),
         products_services: cardServices(input.services),
         naics,
         hours_of_operation: clean(input.hours_of_operation, 500),
@@ -831,6 +914,35 @@ async function cardEdit(req, url, action) {
         is_published: Boolean(input.is_published),
         updated_at: now
       }, 'return=representation');
+      return json({ ok: true, card: editableCard(rows?.[0] || profile) }, 200, noStore);
+    }
+
+    if (action === 'card-photo-upload') {
+      const kind = input.kind === 'logo' ? 'logo' : 'photo';
+      const photos = cardPhotos(profile.photos);
+      if (kind === 'photo' && photos.length >= MAX_CARD_PHOTOS) {
+        return json({ ok: false, error: `You can add up to ${MAX_CARD_PHOTOS} photos. Remove one to add another.` }, 400, noStore);
+      }
+      const stored = await storePhoto(profile, input.data);
+      if (stored.error) return json({ ok: false, error: stored.error }, 400, noStore);
+      const patch = kind === 'logo' ? { logo_url: stored.link } : { photos: [...photos, stored.link] };
+      const rows = await db('boda_vendor_profiles', 'PATCH', `?id=eq.${encodeURIComponent(profile.id)}`,
+        { ...patch, updated_at: now }, 'return=representation');
+      if (kind === 'logo') await removeStoredPhoto(profile.logo_url);
+      return json({ ok: true, card: editableCard(rows?.[0] || profile) }, 200, noStore);
+    }
+
+    if (action === 'card-photo-remove') {
+      const link = clean(input.url, 600);
+      const photos = cardPhotos(profile.photos);
+      const logo = input.kind === 'logo';
+      let patch;
+      if (logo && profile.logo_url) patch = { logo_url: null };
+      else if (!logo && photos.includes(link)) patch = { photos: photos.filter(p => p !== link) };
+      else return json({ ok: false, error: 'That photo could not be found. Reload the page and try again.' }, 400, noStore);
+      const rows = await db('boda_vendor_profiles', 'PATCH', `?id=eq.${encodeURIComponent(profile.id)}`,
+        { ...patch, updated_at: now }, 'return=representation');
+      await removeStoredPhoto(logo ? profile.logo_url : link);
       return json({ ok: true, card: editableCard(rows?.[0] || profile) }, 200, noStore);
     }
 
@@ -902,7 +1014,7 @@ async function registryIntake(req) {
     const raw = await req.text();
     if (raw.length > 4096) return json({ok:false,error:'Submission is too large.'},413,headers);
     const input = JSON.parse(raw);
-    const message = 'Check your business email for a link to confirm your free Vendor Card.';
+    const message = "Thank you! Check your business email for a link to verify your request. Once you confirm, your Vendor Card goes live and we'll email you your Vendor Card link so you can update it any time.";
     // People never see this field, so anything in it came from a bot. The bot gets a normal reply.
     if (clean(input?.company_url,200)) return json({ok:true,message},200,headers);
     const first = clean(input?.first_name,70);
@@ -1073,9 +1185,21 @@ export default async (req) => {
         ...(registryClaim ? { registry_details:null } : {})
       });
 
-      // Free Vendor Cards are edited only with a one-time code, so confirming does not sign in.
+      // Confirming from the emailed link proves the owner controls the business email, so it opens
+      // an edit session and Settings goes straight to the editor. Later visits use the emailed code.
       if (registryClaim && await isRegistryCard(profile)) {
-        return new Response(null,{status:303,headers:{location:`/vendor/${encodeURIComponent(profile.slug)}?published=1`}});
+        const rawEdit = token();
+        await db('boda_vendor_claims','POST','',[{
+          business_name:profile.business_name, claimant_name:claim.claimant_name, claimant_email:profile.owner_email,
+          source:EDIT_SESSION_SOURCE, profile_id:profile.id,
+          verification_token_hash:hash(`edit-session:${rawEdit}`),
+          verification_expires_at:minutesFromNow(CONFIRM_SESSION_MINUTES)
+        }]);
+        await sendCardLiveEmail(profile).catch(error => console.error('vendor card live email failed', error?.message));
+        return new Response(null,{status:303,headers:{
+          location:`/vendor/${encodeURIComponent(profile.slug)}?published=1`,
+          'set-cookie':`boda_card_edit=${encodeURIComponent(rawEdit)}; HttpOnly; Secure; SameSite=Strict; Max-Age=${CONFIRM_SESSION_MINUTES * 60}; Path=/`
+        }});
       }
 
       const rawSession = token();
@@ -1222,7 +1346,7 @@ export default async (req) => {
       const slug = clean(url.searchParams.get('slug'),100);
       if (!slug) return json({ok:false,error:'Profile not found.'},404);
       const rows = await db('boda_vendor_profiles','GET',
-        `?select=claim_id,business_name,slug,headline,about,logo_url,website,phone,city,state,uei,sam_registration_status,service_area,naics,certifications,core_capabilities,products_services,past_performance,teaming_interests,social_links,capability_statement_url,public_contact_email,customer_cta_label,customer_cta_url,is_published,claimed_opportunity,hours_of_operation&slug=eq.${encodeURIComponent(slug)}&is_published=eq.true&limit=1`);
+        `?select=claim_id,business_name,slug,headline,about,logo_url,website,phone,city,state,uei,sam_registration_status,service_area,naics,certifications,core_capabilities,products_services,past_performance,teaming_interests,social_links,capability_statement_url,public_contact_email,customer_cta_label,customer_cta_url,is_published,claimed_opportunity,hours_of_operation,photos&slug=eq.${encodeURIComponent(slug)}&is_published=eq.true&limit=1`);
       if (!rows?.length) return json({ok:false,error:'Profile not found.'},404);
       // owner=true lets the card show its owner the free contact form (no other private data).
       const viewer = await sessionProfile(req).catch(() => null);

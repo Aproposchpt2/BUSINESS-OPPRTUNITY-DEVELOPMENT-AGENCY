@@ -225,6 +225,16 @@ body.registry-page .rc-layout .rc-service{font-family:var(--serif)}
 .rc-drawer [hidden]{display:none!important}
 .rc-btn{padding:13px 18px;border:1px solid var(--gold);border-radius:8px;color:var(--gold2);font-size:15px;font-weight:700;text-align:center;text-decoration:none}
 .rc-btn.gold{background:var(--gold);color:#151515}
+.rc-side .logo.has-img{background-size:cover;background-position:center;color:transparent}
+.rc-headline{margin:8px 0 0;color:#fff;font-size:16px;font-weight:600;line-height:1.45;overflow-wrap:anywhere}
+.rc-social{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.rc-social a{padding:7px 12px;border:1px solid rgba(199,167,90,.55);border-radius:999px;color:var(--gold2);font-size:13px;font-weight:700}
+.rc-social a:hover{background:rgba(199,167,90,.12)}
+.rc-photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:0 0 30px}
+.rc-photos a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:12px;border:1px solid rgba(199,167,90,.3)}
+.rc-photos img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}
+.rc-photos a:hover img{transform:scale(1.04)}
+.rc-center h2.rc-sub{font-size:clamp(28px,3.2vw,40px);margin-bottom:16px}
 @media(max-width:860px){.rc-layout{grid-template-columns:1fr}.rc-side{border-right:0;border-bottom:1px solid rgba(199,167,90,.25);padding:24px 16px}.rc-center{padding:28px 16px}.rc-list{max-height:none;overflow:visible;padding-right:0}.rc-service{min-height:88px;padding:20px}.rc-drawer{width:100%;padding:28px 16px}}
 @media print{
   body.print-contract{background:#fff!important}
@@ -247,28 +257,12 @@ body.registry-page .rc-layout .rc-service{font-family:var(--serif)}
   .engage{align-items:flex-start;flex-direction:column}
   h1{font-size:39px}
 }
-:root{--boda-hh:72px}body.nav-open{overflow:hidden}.boda-header{position:fixed;inset:0 0 auto 0;z-index:9000;height:var(--boda-hh);background:rgba(2,11,23,.95);border-bottom:1px solid rgba(199,167,90,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#fff}.boda-hinner{max-width:1380px;height:100%;margin:0 auto;padding:0 max(24px,4vw);display:flex;align-items:center;justify-content:space-between;gap:32px}.boda-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;flex-shrink:0}.boda-rule{width:2px;height:36px;background:linear-gradient(#ead9a5,#c7a75a);flex-shrink:0}.boda-brand strong{display:block;font-size:.78rem;letter-spacing:.18em;font-weight:700;line-height:1}.boda-brand em{display:block;margin-top:5px;font-style:normal;font-size:.5rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.6)}.boda-nav{display:flex;align-items:center;gap:20px}.boda-nav a{text-decoration:none;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.72);white-space:nowrap;transition:color .2s}.boda-nav a:hover,.boda-nav a[aria-current]{color:#fff}.boda-nav .boda-cta{padding:10px 14px;border:1px solid rgba(229,207,154,.5);color:#ead9a5}.boda-toggle{display:none;background:transparent;border:0;color:#fff;cursor:pointer;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;font-family:inherit;font-weight:600;padding:10px 0;flex-shrink:0}@media(max-width:860px){.boda-header{backdrop-filter:none;-webkit-backdrop-filter:none}body.nav-open .boda-header{background:#020b17}.boda-toggle{display:block}.boda-nav{position:fixed;inset:var(--boda-hh) 0 0 0;height:calc(100vh - var(--boda-hh));height:calc(100dvh - var(--boda-hh));box-sizing:border-box;overflow-y:auto;overscroll-behavior:contain;background:#020b17;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:32px max(32px,8vw) max(32px,env(safe-area-inset-bottom));gap:26px;opacity:0;visibility:hidden;transform:translateY(-12px);transition:.22s ease}.boda-nav.open{opacity:1;visibility:visible;transform:none}.boda-nav a{font-size:.78rem;flex-shrink:0;min-height:44px;display:flex;align-items:center}.boda-nav .boda-cta{padding:12px 0;border:0;border-bottom:1px solid rgba(229,207,154,.28)}}@media(max-width:480px){.boda-brand strong{font-size:.66rem;letter-spacing:.12em}}
+:root{--boda-hh:0px}body.nav-open{overflow:hidden}.boda-header{position:fixed;inset:0 0 auto 0;z-index:9000;height:var(--boda-hh);background:rgba(2,11,23,.95);border-bottom:1px solid rgba(199,167,90,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#fff}.boda-hinner{max-width:1380px;height:100%;margin:0 auto;padding:0 max(24px,4vw);display:flex;align-items:center;justify-content:space-between;gap:32px}.boda-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:#fff;flex-shrink:0}.boda-rule{width:2px;height:36px;background:linear-gradient(#ead9a5,#c7a75a);flex-shrink:0}.boda-brand strong{display:block;font-size:.78rem;letter-spacing:.18em;font-weight:700;line-height:1}.boda-brand em{display:block;margin-top:5px;font-style:normal;font-size:.5rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.6)}.boda-nav{display:flex;align-items:center;gap:20px}.boda-nav a{text-decoration:none;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.72);white-space:nowrap;transition:color .2s}.boda-nav a:hover,.boda-nav a[aria-current]{color:#fff}.boda-nav .boda-cta{padding:10px 14px;border:1px solid rgba(229,207,154,.5);color:#ead9a5}.boda-toggle{display:none;background:transparent;border:0;color:#fff;cursor:pointer;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;font-family:inherit;font-weight:600;padding:10px 0;flex-shrink:0}@media(max-width:860px){.boda-header{backdrop-filter:none;-webkit-backdrop-filter:none}body.nav-open .boda-header{background:#020b17}.boda-toggle{display:block}.boda-nav{position:fixed;inset:var(--boda-hh) 0 0 0;height:calc(100vh - var(--boda-hh));height:calc(100dvh - var(--boda-hh));box-sizing:border-box;overflow-y:auto;overscroll-behavior:contain;background:#020b17;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:32px max(32px,8vw) max(32px,env(safe-area-inset-bottom));gap:26px;opacity:0;visibility:hidden;transform:translateY(-12px);transition:.22s ease}.boda-nav.open{opacity:1;visibility:visible;transform:none}.boda-nav a{font-size:.78rem;flex-shrink:0;min-height:44px;display:flex;align-items:center}.boda-nav .boda-cta{padding:12px 0;border:0;border-bottom:1px solid rgba(229,207,154,.28)}}@media(max-width:480px){.boda-brand strong{font-size:.66rem;letter-spacing:.12em}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap">
 <link rel="stylesheet" href="/assets/sbda-theme.css">
 </head>
 <body>
-<header class="boda-header" id="bodaHeader">
-  <div class="boda-hinner">
-    <a class="boda-brand" href="/" aria-label="Stellar Business Development Agency home">
-      <span class="boda-rule" aria-hidden="true"></span>
-      <span><strong>STELLAR BUSINESS DEVELOPMENT AGENCY</strong></span>
-    </a>
-    <button class="boda-toggle" id="bodaToggle" type="button" aria-expanded="false" aria-controls="bodaNav">Menu</button>
-    <nav class="boda-nav" id="bodaNav" aria-label="Site navigation">
-      <a href="/">Home</a>
-      <a href="/contract-preparedness">Contract Preparedness</a>
-      
-      <a href="/business-development-marketing-engine">Marketing Engine</a>
-      <a class="boda-cta" href="/claim">Claim an Opportunity</a>
-    </nav>
-  </div>
-</header>
 <div class="wrap" id="app"></div>
 <script>
 (()=>{'use strict';
@@ -330,11 +324,17 @@ function renderRegistryCard(p){
   const contactLinks=(site?'<a class="rc-btn gold" href="'+esc(site)+'" rel="nofollow noopener" target="_blank">Visit Website</a>':'')
     +(tel?'<a class="rc-btn" href="tel:'+esc(tel)+'">Call '+esc(p.phone)+'</a>':'')
     +(p.public_contact_email?'<a class="rc-btn" href="mailto:'+esc(p.public_contact_email)+'">Email</a>':'');
-  app.innerHTML=(published?'<div class="rc-notice"><strong>Your free Vendor Card is live.</strong> <a href="'+editUrl+'">Add your services, hours and more in Settings</a>.</div>':'')
+  const photoBase=/^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/vendor-card-photos\//;
+  const logoUrl=photoBase.test(p.logo_url||'')?p.logo_url:'';
+  const photos=(p.photos||[]).filter(u=>photoBase.test(String(u)));
+  const socialNames={facebook:'Facebook',instagram:'Instagram',linkedin:'LinkedIn',x:'X',youtube:'YouTube',tiktok:'TikTok'};
+  const social=Object.entries(socialNames).filter(([k])=>/^https:\/\//i.test((p.social_links||{})[k]||'')).map(([k,label])=>'<a href="'+esc(p.social_links[k])+'" rel="nofollow noopener" target="_blank">'+label+'</a>').join('');
+  app.innerHTML=(published?'<div class="rc-notice"><strong>Your free Vendor Card is live.</strong> <a href="'+editUrl+'">Add your logo, photos, services, social media links and more in Settings</a>. We also emailed you your Vendor Card link.</div>':'')
     +'<div class="rc-layout">'
     +'<aside class="rc-side">'
-    +'<div class="logo">'+esc(initials(p.business_name))+'</div>'
+    +(logoUrl?'<div class="logo has-img" role="img" aria-label="'+esc(p.business_name)+' logo" style="background-image:url(\''+esc(logoUrl)+'\')"></div>':'<div class="logo">'+esc(initials(p.business_name))+'</div>')
     +'<h1>'+esc(p.business_name)+'</h1>'
+    +(p.headline?'<p class="rc-headline">'+esc(p.headline)+'</p>':'')
     +(loc?'<p class="rc-loc">'+esc(loc)+'</p>':'')
     +(p.about?'<p class="rc-about">'+esc(p.about)+'</p>':'')
     +'<div class="rc-contact">'
@@ -345,11 +345,14 @@ function renderRegistryCard(p){
     +(p.service_area?row('Service Area',esc(p.service_area)):'')
     +(naics.length?row('NAICS Codes',naics.map(esc).join(', ')):'')
     +'</div>'
+    +(social?'<div class="rc-social" aria-label="Social media">'+social+'</div>':'')
     +'<a class="rc-settings" href="'+editUrl+'">Settings</a>'
     +'<button type="button" class="rc-signout" id="rcSignOut" hidden>Sign out</button>'
     +'<p class="rc-source">Business Registry listing. Information provided by the business owner.</p>'
     +'</aside>'
-    +'<main class="rc-center"><h2>Business Services</h2>'
+    +'<main class="rc-center">'
+    +(photos.length?'<h2 class="rc-sub">Photos</h2><div class="rc-photos">'+photos.map((u,i)=>'<a href="'+esc(u)+'" target="_blank" rel="noopener"><img src="'+esc(u)+'" alt="'+esc(p.business_name)+' photo '+(i+1)+'" loading="lazy"></a>').join('')+'</div>':'')
+    +'<h2>Business Services</h2>'
     +(services.length
       ?'<div class="rc-list">'+services.map((s,i)=>'<button type="button" class="rc-service" data-i="'+i+'" aria-expanded="false" aria-controls="rcDrawer"><span>'+esc(s.name)+'</span><i aria-hidden="true">&rsaquo;</i></button>').join('')+'</div>'
       :'<p class="rc-empty">This business has not added its services yet.</p>')
@@ -633,6 +636,5 @@ async function load(){
 load();
 })();
 </script>
-<script>(function(){var t=document.getElementById('bodaToggle'),n=document.getElementById('bodaNav');if(!t||!n)return;t.addEventListener('click',function(){var o=n.classList.toggle('open');document.body.classList.toggle('nav-open',o);t.setAttribute('aria-expanded',String(o));t.textContent=o?'Close':'Menu';});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');document.body.classList.remove('nav-open');t.setAttribute('aria-expanded','false');t.textContent='Menu';});});}());</script>
 </body>
 </html>

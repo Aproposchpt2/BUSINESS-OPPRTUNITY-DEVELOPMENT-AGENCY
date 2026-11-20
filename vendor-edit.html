@@ -32,6 +32,19 @@
     [hidden] { display: none !important; }
     .status { min-height: 1.6em; margin: .75rem 0 0; }
     footer { font-size: .85rem; color: #c9c1ad; margin-top: 2rem; }
+    .card-link { border: 1px solid #c7a75a; padding: 1rem; margin-bottom: 1rem; background: rgba(199,167,90,.08); }
+    .copy-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: .5rem; }
+    .copy-row a { overflow-wrap: anywhere; }
+    .media-block { margin-bottom: 1.25rem; }
+    .logo-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: .5rem; }
+    .logo-preview { width: 84px; height: 84px; border: 1px solid #817454; background: #020b17 center/cover no-repeat; display: grid; place-items: center; color: #c9c1ad; font-size: .75rem; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: .75rem; margin: .75rem 0; }
+    .photo-grid figure { margin: 0; position: relative; aspect-ratio: 4/3; border: 1px solid #3b3324; background: #020b17 center/cover no-repeat; }
+    .photo-grid button { position: absolute; right: .35rem; bottom: .35rem; padding: .3rem .6rem; font-size: .8rem; }
+    .upload-btn { position: relative; display: inline-block; margin: 0; padding: .75rem 1.3rem; border: 1px solid #817454; color: #d7b76d; font-weight: 750; cursor: pointer; }
+    .upload-btn:focus-within { outline: 3px solid #d7b76d; outline-offset: 3px; }
+    .upload-btn input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .upload-btn.busy { opacity: .65; cursor: wait; }
     @media (max-width: 480px) { .row { grid-template-columns: 1fr; gap: 0; } }
   </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap">
@@ -60,15 +73,41 @@
   </form>
 
   <form id="card-form" hidden>
+    <div class="card-link">
+      <strong>Your Vendor Card link</strong>
+      <span class="hint">Share it on social media, your website and email signature.</span>
+      <div class="copy-row"><a id="card-link" href="/"></a><button type="button" class="plain" id="copy-link">Copy Link</button></div>
+    </div>
+
     <h2>Your Vendor Card</h2>
     <label>Business Name <input name="business_name" autocomplete="organization" maxlength="180" required></label>
+    <label>Headline <span class="hint">One line customers see under your name, for example “Licensed HVAC repair, same-day service.”</span><input name="headline" maxlength="160"></label>
     <label>Business Website <input name="website" type="url" autocomplete="url" maxlength="500" required></label>
     <label>Business Phone <input name="phone" type="tel" autocomplete="tel" maxlength="40" required></label>
     <label class="check"><input name="show_email" type="checkbox"> <span>Show my business email on my card: <strong id="current-email"></strong></span></label>
 
+    <h2>Logo &amp; Photos</h2>
+    <p class="hint">Photos save as soon as you add or remove them. JPG, PNG or WebP. Large photos are resized for you.</p>
+    <div class="media-block">
+      <strong>Logo</strong>
+      <div class="logo-row">
+        <div class="logo-preview" id="logo-preview" aria-hidden="true"></div>
+        <div class="actions">
+          <label class="upload-btn">Upload Logo<input type="file" id="logo-file" accept="image/jpeg,image/png,image/webp"></label>
+          <button type="button" class="plain" id="logo-remove" hidden>Remove Logo</button>
+        </div>
+      </div>
+    </div>
+    <div class="media-block">
+      <strong>Photos</strong> <span class="hint">Up to 8 photos of your work, team, storefront or products.</span>
+      <div class="photo-grid" id="photo-grid"></div>
+      <label class="upload-btn" id="photo-add">Add Photos<input type="file" id="photo-file" accept="image/jpeg,image/png,image/webp" multiple></label>
+    </div>
+    <p class="status" id="media-status" role="status"></p>
+
     <h2>Add More About Your Business</h2>
     <p class="hint">These are optional. Anything you add here appears on your public card.</p>
-    <label>Description <textarea name="about" maxlength="1000"></textarea></label>
+    <label>Description <span class="hint">Tell customers who you are, what you do and what makes you different.</span><textarea name="about" maxlength="2000"></textarea></label>
     <div class="services-editor">
       <strong>Business Services</strong>
       <span class="hint">Add each service or product, with one section to promote it. Customers see your promotion when they click it.</span>
@@ -82,6 +121,18 @@
       <label>State <input name="state" autocomplete="address-level1" maxlength="80"></label>
     </div>
     <label>Service Area <input name="service_area" maxlength="200" placeholder="Las Vegas and Clark County"></label>
+
+    <h2>Social Media Links</h2>
+    <p class="hint">Paste the full link to each page, starting with https://. Leave any blank you don't use.</p>
+    <div class="row">
+      <label>Facebook <input name="social_facebook" type="url" maxlength="500" placeholder="https://facebook.com/yourbusiness"></label>
+      <label>Instagram <input name="social_instagram" type="url" maxlength="500" placeholder="https://instagram.com/yourbusiness"></label>
+      <label>LinkedIn <input name="social_linkedin" type="url" maxlength="500" placeholder="https://linkedin.com/company/yourbusiness"></label>
+      <label>X (Twitter) <input name="social_x" type="url" maxlength="500" placeholder="https://x.com/yourbusiness"></label>
+      <label>YouTube <input name="social_youtube" type="url" maxlength="500" placeholder="https://youtube.com/@yourbusiness"></label>
+      <label>TikTok <input name="social_tiktok" type="url" maxlength="500" placeholder="https://tiktok.com/@yourbusiness"></label>
+    </div>
+
     <label class="check"><input name="is_published" type="checkbox"> <span>Show my card publicly. Uncheck to take it off the Business Registry.</span></label>
 
     <div class="actions">
@@ -196,8 +247,111 @@
 
   addService.addEventListener('click', () => addServiceRow().focus());
 
+  const SOCIAL = ['facebook', 'instagram', 'linkedin', 'x', 'youtube', 'tiktok'];
+  const MAX_PHOTOS = 8;
+  const mediaStatus = document.getElementById('media-status');
+  const photoGrid = document.getElementById('photo-grid');
+
+  function fillMedia(card) {
+    const preview = document.getElementById('logo-preview');
+    preview.style.backgroundImage = card.logo_url ? 'url("' + card.logo_url + '")' : '';
+    preview.textContent = card.logo_url ? '' : 'No logo';
+    document.getElementById('logo-remove').hidden = !card.logo_url;
+    photoGrid.replaceChildren(...card.photos.map((url, i) => {
+      const fig = document.createElement('figure');
+      fig.style.backgroundImage = 'url("' + url + '")';
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = 'Remove';
+      remove.setAttribute('aria-label', 'Remove photo ' + (i + 1));
+      remove.addEventListener('click', () => mediaCall('card-photo-remove', { kind: 'photo', url }, 'Photo removed.').catch(() => {}));
+      fig.append(remove);
+      return fig;
+    }));
+    document.getElementById('photo-add').hidden = card.photos.length >= MAX_PHOTOS;
+  }
+
+  // Resizes in the browser so phone photos upload quickly and stay under the 3 MB limit.
+  function shrink(file, maxSide, type) {
+    return new Promise((resolve, reject) => {
+      if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { reject(new Error('Choose a JPG, PNG or WebP image.')); return; }
+      const img = new Image();
+      const src = URL.createObjectURL(file);
+      img.onload = () => {
+        const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(src);
+        resolve(canvas.toDataURL(type, 0.85));
+      };
+      img.onerror = () => { URL.revokeObjectURL(src); reject(new Error('That image could not be read. Try a different photo.')); };
+      img.src = src;
+    });
+  }
+
+  let mediaBusy = false;
+  async function mediaCall(action, body, done) {
+    if (mediaBusy) return;
+    mediaBusy = true;
+    document.querySelectorAll('.upload-btn').forEach(b => b.classList.add('busy'));
+    mediaStatus.textContent = action === 'card-photo-upload' ? 'Uploading…' : 'Working…';
+    try {
+      const { card } = await call(action, body);
+      fillMedia(card);
+      mediaStatus.textContent = done;
+    } catch (error) {
+      mediaStatus.textContent = error.message;
+      throw error;
+    } finally {
+      mediaBusy = false;
+      document.querySelectorAll('.upload-btn').forEach(b => b.classList.remove('busy'));
+    }
+  }
+
+  document.getElementById('logo-file').addEventListener('change', async event => {
+    const file = event.target.files[0];
+    event.target.value = '';
+    if (!file) return;
+    try {
+      const data = await shrink(file, 600, 'image/webp');
+      await mediaCall('card-photo-upload', { kind: 'logo', data }, 'Your logo is saved.');
+    } catch (error) { mediaStatus.textContent = error.message; }
+  });
+
+  document.getElementById('logo-remove').addEventListener('click', () =>
+    mediaCall('card-photo-remove', { kind: 'logo' }, 'Logo removed.').catch(() => {}));
+
+  document.getElementById('photo-file').addEventListener('change', async event => {
+    const files = [...event.target.files];
+    event.target.value = '';
+    const room = MAX_PHOTOS - photoGrid.children.length;
+    for (const [i, file] of files.slice(0, room).entries()) {
+      try {
+        const data = await shrink(file, 1600, 'image/jpeg');
+        await mediaCall('card-photo-upload', { kind: 'photo', data }, files.length > 1 ? 'Saved ' + (i + 1) + ' of ' + Math.min(files.length, room) + ' photos.' : 'Your photo is saved.');
+      } catch (error) { mediaStatus.textContent = error.message; return; }
+    }
+    if (files.length > room) mediaStatus.textContent += ' Only ' + MAX_PHOTOS + ' photos fit on a card.';
+  });
+
+  document.getElementById('copy-link').addEventListener('click', async event => {
+    const link = document.getElementById('card-link').href;
+    try { await navigator.clipboard.writeText(link); event.target.textContent = 'Copied'; }
+    catch { event.target.textContent = 'Select the link to copy'; }
+    setTimeout(() => { event.target.textContent = 'Copy Link'; }, 2500);
+  });
+
   function fillCard(card) {
     const f = forms.card.elements;
+    const cardUrl = location.origin + '/vendor/' + encodeURIComponent(card.slug);
+    const link = document.getElementById('card-link');
+    link.href = cardUrl;
+    link.textContent = cardUrl;
+    f.headline.value = card.headline;
+    SOCIAL.forEach(key => { f['social_' + key].value = card.social_links[key] || ''; });
+    fillMedia(card);
     f.business_name.value = card.business_name;
     f.website.value = card.website;
     f.phone.value = card.phone;
@@ -242,7 +396,15 @@
   submitWith(forms.card, async () => {
     const f = forms.card.elements;
     if (readServices().some(service => !service.name)) throw new Error('Add a name for each service that has a promotion.');
+    const social_links = {};
+    for (const key of SOCIAL) {
+      const value = f['social_' + key].value.trim();
+      if (value && !/^https:\/\/\S+$/i.test(value)) throw new Error('Social media links must be full links starting with https://.');
+      if (value) social_links[key] = value;
+    }
     const { card } = await call('card-save', {
+      headline: f.headline.value,
+      social_links,
       business_name: f.business_name.value,
       website: f.website.value,
       phone: f.phone.value,
