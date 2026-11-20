@@ -53,7 +53,7 @@ const contactSection = `
     <div class="contact-copy reveal">
       <div class="eyebrow">Contact the Agency</div>
       <h2 class="section-title" id="contact-title">YOUR NEXT STEP - CONTACT US</h2>
-      <p>Tell us about your business needs, partnership interests, or questions about SBDA resources.</p>
+      <p>Tell us about your business needs, partnership interests, or questions about Stellar Business Development Agency resources.</p>
       <p class="contact-note">Your inquiry is sent directly to the Agency for review.</p>
     </div>
 
