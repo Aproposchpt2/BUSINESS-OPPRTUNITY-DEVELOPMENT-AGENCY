@@ -16,88 +16,135 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap">
 <style>
-:root{color-scheme:dark;--gold:#d5aa4d;--line:rgba(213,170,77,.25);--bg:#020b17;--panel:#061b3a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#f8f7f3;font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}a{color:inherit}a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.wrap{max-width:1200px;margin:auto;padding:0 24px}header{position:sticky;top:0;z-index:20;background:rgba(3,18,44,.97);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:78px}.logo{text-decoration:none;font-weight:800;letter-spacing:.16em}.logo span{display:block;color:var(--gold);font-size:.68rem;letter-spacing:.12em}nav{display:flex;gap:22px;flex-wrap:wrap}nav a{text-decoration:none;font-size:.82rem}nav a:hover,.link:hover{color:var(--gold)}.eyebrow{color:var(--gold);text-transform:uppercase;font-size:.76rem;font-weight:800;letter-spacing:.2em}h1{font:600 clamp(2.8rem,6vw,5.8rem)/1.06 Georgia,serif;letter-spacing:-.035em;max-width:1050px;margin:24px 0}h2{font:600 clamp(2rem,3.7vw,3.3rem)/1.15 Georgia,serif;margin:0 0 20px}h3{font-size:1.25rem;margin:0 0 12px}.lead{font-size:1.2rem;color:rgba(255,255,255,.88);max-width:790px}.values{color:var(--gold);font-size:.83rem;letter-spacing:.16em;font-weight:800;margin:34px 0}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}.btn{display:inline-block;padding:14px 22px;text-decoration:none;border:1px solid var(--gold);font-weight:750;font-size:.9rem}.primary{background:var(--gold);color:#080808}.btn:hover{filter:brightness(1.15)}section{padding:90px 0;border-top:1px solid rgba(213,170,77,.18)}.muted{color:rgba(255,255,255,.78)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:36px}.card{background:var(--panel);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;min-height:250px}.card p{color:rgba(255,255,255,.78);flex:1}.link{color:var(--gold);font-weight:750;text-decoration:none}.partner{border-left:3px solid var(--gold);padding-left:22px;margin-top:35px}.partner strong{display:block;font-size:1.2rem;letter-spacing:.08em}.note{background:rgba(6,27,58,.78);border:1px solid var(--line);padding:26px;margin-top:28px}footer{padding:45px 0;border-top:1px solid var(--line);color:rgba(255,255,255,.62);font-size:.85rem}footer a{color:var(--gold)}@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{align-items:flex-start;flex-direction:column;padding:18px 0}nav{gap:14px}.hero{padding:48px 0 36px}}@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding:36px 0 28px}section{padding:58px 0}.wrap{padding:0 18px}h1{font-size:2.65rem}.card{min-height:0}}
-/* Shared styles used by the inquiry form injected at the edge. */
-:root{--navy-deep:var(--bg);--navy-mid:var(--panel);--gold-light:var(--gold);--serif:Georgia,serif}
-.hero-message{max-width:900px;margin:0;font-size:clamp(1.6rem,2.6vw,2.5rem);line-height:1.15}
-@media(max-width:560px){.sbda-hero h1{font-size:clamp(1.7rem,8.2vw,2.5rem)}}
-.resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.resource-grid h2{font-size:clamp(1.35rem,2.2vw,1.8rem);margin:0 0 12px}
-.resource-grid .btn{align-self:flex-start}
-.resource-grid .btn.secondary{color:var(--gold);margin-top:10px}
-@media(max-width:800px){.resource-grid{grid-template-columns:1fr}.resource-grid .card{min-height:0}}
-.shell{max-width:1200px;margin:auto;padding:0 24px}
-section{scroll-margin-top:90px}
-h1{overflow-wrap:anywhere}
-@media(max-width:800px){header{position:static}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:root{--navy:#061b3a;--deep:#020b17;--gold:#d5aa4d;--gold2:#e8c982;--gold-light:#e8c982;--navy-deep:#020b17;--ivory:#fbf5e7;
+--heroImg:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85');
+--section2:url('https://images.unsplash.com/photo-1774953037913-af0cf688491a?auto=format&fit=crop&w=2400&q=85');
+--section3:url('https://images.pexels.com/photos/28715052/pexels-photo-28715052.jpeg?auto=compress&cs=tinysrgb&w=2400');
+--section4:url('https://images.pexels.com/photos/34823912/pexels-photo-34823912.jpeg?auto=compress&cs=tinysrgb&w=2400')}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--deep);color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}
+.wrap,.shell{max-width:1180px;margin:auto;padding:0 24px}
+.top{position:sticky;top:0;z-index:60;background:rgba(3,18,44,.97);border-bottom:1px solid rgba(213,170,77,.25);box-shadow:0 12px 34px rgba(0,0,0,.2)}
+.top .wrap{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:Cinzel,serif;font-weight:600;letter-spacing:.055em;text-transform:uppercase;line-height:1.08;font-size:.86rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo .mk{width:30px;height:30px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);flex:none}
+.nav{display:flex;align-items:center;gap:18px;font-size:.78rem;font-weight:900}
+.nav a{color:#fff;text-decoration:none}.nav a:hover{color:var(--gold2)}
+h1,h2,h3{margin:0}
+.hero{height:calc(100svh - 72px);min-height:680px;max-height:860px;display:flex;align-items:center;position:relative;isolation:isolate;overflow:hidden;background:#071a37}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(2,14,34,.96) 0%,rgba(5,23,52,.88) 29%,rgba(5,23,52,.52) 50%,rgba(5,23,52,.1) 76%),var(--heroImg);background-size:cover;background-position:center right;z-index:-1}
+.hero .wrap{width:100%;height:100%;display:flex;align-items:center}
+.hero-content{width:min(52vw,590px);padding:34px 0 28px}
+.kicker,.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(3,18,44,.48);color:#fff;font-size:.64rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.kicker:before,.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.hero h1,.image-section h2,.band h2,.section-title{font-family:Cinzel,serif;color:#fff;font-weight:600;font-size:clamp(2.5rem,4.2vw,4.6rem);letter-spacing:.012em;line-height:.98;margin:0 0 12px;text-shadow:0 5px 30px rgba(0,0,0,.3);overflow-wrap:normal}
+.hero-subtitle,.subtitle{font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(1.18rem,1.8vw,1.65rem);color:var(--gold2);margin-bottom:16px}
+.hero-copy,.copy{color:rgba(255,255,255,.92);font-size:clamp(.92rem,1.05vw,1.04rem);line-height:1.6;max-width:590px;margin:0 0 18px}
+.trust{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.trust span{border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(3,18,44,.48);color:#fff;padding:6px 10px;font-size:.58rem;font-weight:900;letter-spacing:.075em;text-transform:uppercase}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border-radius:13px;text-decoration:none;font-size:.84rem;font-weight:900;letter-spacing:.04em;padding:15px 25px}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);box-shadow:0 16px 38px rgba(213,170,77,.16)}
+.btn-ghost{border:1px solid rgba(213,170,77,.54);color:#fff;background:rgba(3,18,44,.35)}
+.btn-ghost:hover{border-color:var(--gold2)}
+.small-link{display:inline-block;margin-top:18px;font-size:.8rem;color:var(--gold2);text-underline-offset:3px}
+.image-section{position:relative;min-height:100svh;display:flex;align-items:center;background-color:#071a37;background-size:cover;background-position:center;isolation:isolate;overflow:hidden}
+.image-section:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(2,14,34,.97) 0%,rgba(5,23,52,.9) 30%,rgba(5,23,52,.56) 52%,rgba(5,23,52,.10) 78%),linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.16))}
+.section-2{background-image:var(--section2)}
+.section-3{background-image:var(--section3)}
+.section-4{background-image:var(--section4)}
+.section-3:after{background:linear-gradient(90deg,rgba(2,14,34,.94) 0%,rgba(5,23,52,.82) 30%,rgba(5,23,52,.42) 55%,rgba(5,23,52,.12) 82%),linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.18))}
+.section-4:after{background:linear-gradient(90deg,rgba(2,14,34,.96) 0%,rgba(5,23,52,.84) 32%,rgba(5,23,52,.44) 58%,rgba(5,23,52,.08) 84%),linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.16))}
+.content{width:min(56vw,680px);padding:72px 0}
+.accent{width:54px;height:2px;background:var(--gold);margin:0 0 20px}
+.path{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 30px}
+.path-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(213,170,77,.62);border-radius:999px;background:rgba(3,18,44,.45);color:#fff;padding:8px 13px;font-size:.72rem;font-weight:800;text-decoration:none}
+a.path-pill:hover{border-color:var(--gold2);color:var(--gold2)}
+.path-pill i{width:18px;height:18px;border:1px solid var(--gold);border-radius:50%;display:inline-block;position:relative;flex:none}
+.path-pill i:after{content:"";position:absolute;left:6px;top:4px;width:4px;height:8px;border:solid var(--gold);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.arrow{color:var(--gold);opacity:.9}
+.section-label{position:absolute;right:26px;bottom:22px;font-size:.62rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.54)}
+.band{background:linear-gradient(135deg,#061b3a,#020b17);border-top:1px solid rgba(213,170,77,.25);padding:58px 0}
+.band h2{font-size:clamp(1.7rem,3vw,3.1rem)}
+.notice{margin-top:18px;max-width:760px;border:1px solid rgba(213,170,77,.35);border-radius:14px;background:rgba(6,27,58,.78);padding:20px 24px}
+.notice strong{display:block;font-size:.78rem;letter-spacing:.1em;color:var(--gold2);margin-bottom:6px}
+.notice p{margin:0;color:rgba(255,255,255,.82);line-height:1.6}
+.final-band{text-align:center}
+.final-band p{color:rgba(255,255,255,.74);max-width:760px;margin:0 auto 22px;line-height:1.7}
+.site-footer{background:#020b17;border-top:1px solid rgba(213,170,77,.32);padding:42px 0 36px;text-align:center}
+.footer-brandline{font-family:Cinzel,serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;font-size:clamp(1rem,1.9vw,1.45rem);line-height:1.45;margin-bottom:12px}
+.footer-brandline span{color:var(--gold2);font-family:Fraunces,Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0}
+.footer-copy{color:rgba(255,255,255,.62);font-size:.84rem;line-height:1.7;max-width:780px;margin:0 auto}
+.footer-legal{color:rgba(255,255,255,.46);font-size:.76rem;line-height:1.65;max-width:820px;margin:16px auto 0}
+.footer-legal a{color:inherit}
+@media(min-width:981px){.hero .wrap,.image-section>.wrap{max-width:none;margin:0;padding-left:clamp(24px,3.2vw,58px);padding-right:clamp(24px,2.5vw,48px)}}
+@media(max-width:1100px){.hero-content{width:min(58vw,560px)}.nav{gap:12px;font-size:.72rem}}
+@media(max-width:980px){.nav{display:none}.hero,.image-section{height:auto;max-height:none;min-height:auto}.hero-content,.content{width:100%;padding:58px 0 70px}.hero:before{background-image:linear-gradient(180deg,rgba(2,14,34,.97),rgba(5,23,52,.72)),var(--heroImg);background-position:center}.image-section:after{background:linear-gradient(90deg,rgba(2,14,34,.96),rgba(5,23,52,.78),rgba(5,23,52,.38))}.arrow{display:none}}
+@media(max-width:620px){.top .wrap{padding:14px 20px}.btn{width:100%;max-width:360px}.path-pill{font-size:.66rem}.section-label{display:none}.hero h1,.image-section h2{font-size:clamp(1.9rem,8.6vw,2.6rem)}}
 </style>
-<!-- Google tag: Apropos Group LLC .ORG / Apropos Opportunity -->
-<script>
-(function () {
-  if (!['sbda.stellaruc.com'].includes(window.location.hostname)) return;
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-  window.gtag('js', new Date());
-  var campaign = new URLSearchParams(window.location.search);
-var sources = ['linkedin', 'google_business_profile', 'iss_outreach'];
-var media = ['social', 'organic', 'email'];
-var names = ['iss_sales', 'opportunity_services'];
-var attribution = {};
-if (sources.includes(campaign.get('utm_source'))) attribution.campaign_source = campaign.get('utm_source');
-if (media.includes(campaign.get('utm_medium'))) attribution.campaign_medium = campaign.get('utm_medium');
-if (names.includes(campaign.get('utm_campaign'))) attribution.campaign_name = campaign.get('utm_campaign');
-  window.gtag('config', 'G-VXX1P92PHS', {
-    ...attribution,
-    page_location: window.location.origin + window.location.pathname
-  });
-  var tag = document.createElement('script');
-  tag.async = true;
-  tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-VXX1P92PHS';
-  document.head.appendChild(tag);
-}());
-</script>
-<link rel="stylesheet" href="/assets/sbda-theme.css">
-</head><body>
-<header><div class="wrap nav"><a class="logo" href="/">SBDA<span>STELLAR BUSINESS DEVELOPMENT AGENCY</span></a><nav aria-label="Primary navigation"><a href="#future">Coming Soon</a><a href="#opportunities">Free Business Resources</a><a href="#solutions">Solutions</a><a href="#assessment">Business Assessment</a><a href="#contact">Contact</a><a href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Consultation</a></nav></div></header>
-<main><div class="hero sbda-hero"><div class="wrap"><div class="sbda-hero-content"><span class="kicker">Economic Growth Through Business Development</span><h1>STELLAR BUSINESS DEVELOPMENT AGENCY</h1><p class="hero-message">Where Business Opportunity Begins</p><div class="sbda-accent"></div><p class="lead">We stimulate economic growth by developing businesses that create opportunities, generate employment, strengthen families, and build prosperous communities.</p><div class="actions"><a class="btn primary" href="#opportunities">Explore Free Business Resources →</a><a class="btn" href="#contact">Contact the Agency →</a></div><div class="trust"><span>Free Contract Search</span><span>Free Ad Space</span><span>Business Development</span><span>Intelligent Systems</span></div></div></div></div>
-<section id="future"><div class="wrap"><div class="eyebrow">Future service</div><h2>Business Formation &amp; State Filing Services</h2><div class="note"><strong>COMING SOON — REGULATORY REVIEW</strong><p class="muted">This proposed service is not currently available. No formation or filing orders are being accepted.</p></div></div></section>
-<section id="opportunities" aria-label="Business resources">
-  <div class="wrap">
-    <div class="resource-grid">
-      <article class="card">
-        <h2>FREE AD SPACE</h2>
-        <p>Your vendor card puts your business on the SBDA site — free. People looking for what you do can find you, visit your website, and contact you. Because the businesses that get seen are the businesses that get called.</p>
-        <a class="btn primary" href="/free-vendor-card">Claim Your Free Ad Space →</a>
-        <a class="btn secondary" href="/vendor-edit">Edit Your Vendor Card →</a>
-      </article>
-      <article class="card">
-        <h2>Free Access to Federal and State Contracts</h2>
-        <p>Search federal and state contract opportunities for free through the BDMS Business Contract Search Portal.</p>
-        <a class="btn primary" href="https://bdms.aproposgroupllc.com/">Search Contracts →</a>
-      </article>
-      <article class="card">
-        <h2>The MARKET PLACE FOR CUSTOMIZED INTELLIGENT BUSINESS SYSTEMS - STELLAR INTELLIGENT SOFTWARE DEVELOPERS</h2>
-        <p>Builds the business system around your business's operations.</p>
-        <a class="btn primary" href="https://stellaruc.com/">Explore STELLAR →</a>
-      </article>
-    </div>
-    <p><a id="claimOpportunityCta" href="/claim">Claim a referred opportunity</a></p>
-  </div>
-</section>
-<section id="solutions"><div class="wrap"><div class="eyebrow">Technology solutions</div><h2>Systems built around the way businesses operate.</h2><p class="muted">Explore STELLAR's customer engagement, operational support and business infrastructure offerings.</p><div class="grid">
-<article class="card"><h3>Customer Care Center</h3><p>Customer communications and service coverage beyond conventional business hours.</p><a class="link" href="https://ccc.stellaruc.com">Explore Customer Care Center →</a></article>
-<article class="card"><h3>Sales Specialist</h3><p>Intelligent sales engagement and lead capture for incoming business opportunities.</p><a class="link" href="https://sales.stellaruc.com">Explore Sales Specialist →</a></article>
-<article class="card"><h3>Support Specialist</h3><p>Intelligent support interactions and structured customer assistance.</p><a class="link" href="https://specialist.stellaruc.com">Explore Support Specialist →</a></article>
-<article class="card"><h3>Property Management Assistant</h3><p>24/7/365 incident intake, coordinated notifications and status communication.</p><a class="link" href="https://pma.stellaruc.com">Explore Property Management Assistant →</a></article>
-<article class="card"><h3>Business Infrastructure as a Service</h3><p>Business technology infrastructure and systems to support operational growth.</p><a class="link" href="https://biaas.stellaruc.com">Explore BIaaS →</a></article>
-<article class="card"><h3>Business Marketing as a Service</h3><p>Intelligent marketing outreach and business promotion, in English and Spanish.</p><a class="link" href="https://stellaruc.com/products/intelligent-business-marketing-system">Explore Business Marketing as a Service →</a></article>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/"><span class="mk">S</span><span>Stellar Business<br>Development Agency</span></a><nav class="nav" aria-label="Primary navigation"><a href="#opportunities">Free Business Resources</a><a href="#solutions">Solutions</a><a href="#assessment">Business Assessment</a><a href="#future">Coming Soon</a><a href="#contact">Contact</a><a href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Consultation</a></nav></div></header>
+<main>
+<section class="hero" id="top"><div class="wrap"><div class="hero-content">
+<span class="kicker">Economic Growth Through Business Development</span>
+<h1>Stellar Business<br>Development Agency</h1>
+<div class="hero-subtitle">Where Business Opportunity Begins</div>
+<p class="hero-copy">We stimulate economic growth by developing businesses that create opportunities, generate employment, strengthen families, and build prosperous communities.</p>
+<div class="trust"><span>Free Contract Search</span><span>Free Ad Space</span><span>Business Development</span><span>Intelligent Systems</span></div>
+<div class="cta-row"><a href="#opportunities" class="btn btn-primary">Explore Free Business Resources →</a><a href="#contact" class="btn btn-ghost">Contact the Agency →</a></div>
 </div></div></section>
 
+<section class="image-section section-2" id="opportunities" aria-label="Free business resources"><div class="wrap"><div class="content">
+<span class="kicker">Free Business Resources</span>
+<h2>Free Ad Space.<br>Free Contract Search.</h2>
+<div class="subtitle">The businesses that get seen are the businesses that get called.</div>
+<div class="accent"></div>
+<p class="copy">Your vendor card puts your business on the SBDA site — free. People looking for what you do can find you, visit your website, and contact you. You can also search federal and state contract opportunities for free through the BDMS Business Contract Search Portal.</p>
+<div class="path"><span class="path-pill"><i></i>Claim Your Free Ad Space</span><span class="arrow">→</span><span class="path-pill"><i></i>Confirm by Email</span><span class="arrow">→</span><span class="path-pill"><i></i>Get Found &amp; Contacted</span></div>
+<div class="cta-row"><a class="btn btn-primary" href="/free-vendor-card">Claim Your Free Ad Space →</a><a class="btn btn-ghost" href="/vendor-edit">Edit Your Vendor Card →</a><a class="btn btn-ghost" href="https://bdms.aproposgroupllc.com/">Search Contracts →</a></div>
+<a class="small-link" id="claimOpportunityCta" href="/claim">Claim a referred opportunity →</a>
+</div></div><div class="section-label">Free business resources</div></section>
 
-<section id="assessment"><div class="wrap"><div class="eyebrow">Business needs assessment</div><h2>Identify where intelligent systems can make a difference.</h2><p class="lead">Discuss service coverage, lead handling, operational bottlenecks and opportunities for custom automation with the STELLAR team.</p><div class="actions"><a class="btn primary" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Schedule a 30-Minute Consultation</a><a class="btn" href="https://stellaruc.com">Discover STELLAR</a></div></div></section>
-<section id="promise"><div class="wrap"><p class="hero-message">START YOUR JOURNEY TODAY</p></div></section></main>
-<footer><div class="wrap">Stellar Business Development Agency · Operated by Apropos Group LLC. An independent private business, not a government agency. <a href="/about">About SBDA</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></div></footer><script>
+<section class="image-section section-3" id="solutions" aria-label="Technology solutions"><div class="wrap"><div class="content">
+<span class="kicker">Technology Solutions</span>
+<h2>Systems built around<br>your business.</h2>
+<div class="subtitle">The marketplace for customized intelligent business systems.</div>
+<div class="accent"></div>
+<p class="copy">STELLAR Intelligent Software Developers builds the business system around your business's operations — customer engagement, operational support and business infrastructure.</p>
+<div class="path"><a class="path-pill" href="https://ccc.stellaruc.com"><i></i>Customer Care Center</a><a class="path-pill" href="https://sales.stellaruc.com"><i></i>Sales Specialist</a><a class="path-pill" href="https://specialist.stellaruc.com"><i></i>Support Specialist</a><a class="path-pill" href="https://pma.stellaruc.com"><i></i>Property Management Assistant</a><a class="path-pill" href="https://biaas.stellaruc.com"><i></i>Business Infrastructure as a Service</a><a class="path-pill" href="https://stellaruc.com/products/intelligent-business-marketing-system"><i></i>Business Marketing as a Service</a></div>
+<div class="cta-row"><a class="btn btn-primary" href="https://stellaruc.com/">Explore STELLAR →</a></div>
+</div></div><div class="section-label">Technology solutions</div></section>
+
+<section class="image-section section-4" id="assessment" aria-label="Business needs assessment"><div class="wrap"><div class="content">
+<span class="kicker">Business Needs Assessment</span>
+<h2>Find where intelligent<br>systems make a difference.</h2>
+<div class="subtitle">A 30-minute consultation with the STELLAR team.</div>
+<div class="accent"></div>
+<p class="copy">Discuss service coverage, lead handling, operational bottlenecks and opportunities for custom automation with the STELLAR team.</p>
+<div class="path"><span class="path-pill"><i></i>Service Coverage</span><span class="arrow">→</span><span class="path-pill"><i></i>Lead Handling</span><span class="arrow">→</span><span class="path-pill"><i></i>Operational Bottlenecks</span><span class="arrow">→</span><span class="path-pill"><i></i>Custom Automation</span></div>
+<div class="cta-row"><a class="btn btn-primary" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Schedule a 30-Minute Consultation →</a><a class="btn btn-ghost" href="https://stellaruc.com">Discover STELLAR</a></div>
+</div></div><div class="section-label">Business needs assessment</div></section>
+
+<section class="band" id="future"><div class="wrap">
+<span class="kicker">Future Service</span>
+<h2>Business Formation &amp; State Filing Services</h2>
+<div class="notice"><strong>COMING SOON — REGULATORY REVIEW</strong><p>This proposed service is not currently available. No formation or filing orders are being accepted.</p></div>
+</div></section>
+
+<section class="band final-band" id="promise"><div class="wrap">
+<h2>Start Your Journey Today</h2>
+<p>Tell us about your business needs, partnership interests, or questions about SBDA resources. Your inquiry is sent directly to the Agency for review.</p>
+<div class="cta-row" style="justify-content:center"><a class="btn btn-primary" href="#contact">Contact the Agency →</a><a class="btn btn-ghost" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Schedule a Consultation</a></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap">
+<div class="footer-brandline">Stellar Business Development Agency<br><span>Where Business Opportunity Begins</span></div>
+<p class="footer-copy">© 2026 Apropos Group LLC. All rights reserved. Stellar Business Development Agency is operated by Apropos Group LLC — an independent private business, not a government agency.</p>
+<p class="footer-legal"><a href="/about">About SBDA</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+</div></footer>
+<script>
 (() => {
     const claimCta = document.getElementById('claimOpportunityCta');
     if (claimCta) {
