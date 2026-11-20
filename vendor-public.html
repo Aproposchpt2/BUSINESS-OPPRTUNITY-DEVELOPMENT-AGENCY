@@ -309,7 +309,7 @@ async function downloadContractPdf(o,business){
 
 function renderRegistryCard(p){
   const app=document.getElementById('app');
-  document.title=p.business_name+' | SBDA Business Registry';
+  document.title=p.business_name+' | Stellar Business Development Agency Business Registry';
   document.body.classList.add('registry-page');
   app.classList.add('registry-wide');
   const loc=[p.city,p.state].filter(Boolean).join(', ');

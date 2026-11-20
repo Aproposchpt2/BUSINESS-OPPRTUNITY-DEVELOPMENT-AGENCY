@@ -1074,13 +1074,13 @@ function registryConfirmPage({ token: rawToken = '', businessName = '', expired 
       <a class="button" href="/free-vendor-card">Request Your Free Vendor Card</a>`
     : `<h1>Confirm your free Vendor Card</h1>
       <p class="name">${safe(businessName)}</p>
-      <p>Confirm to publish your business name, website, phone, and email in the SBDA Business Registry.</p>
+      <p>Confirm to publish your business name, website, phone, and email in the Stellar Business Development Agency Business Registry.</p>
       <form method="post" action="/api/vendor-presence?action=registry-confirm">
         <input type="hidden" name="token" value="${safe(rawToken)}">
         <button class="button" type="submit">Confirm and Publish</button>
       </form>
       <p class="note">You can edit or remove your card at any time with a code sent to your business email.</p>`;
-  return new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${expired ? 'Link Expired' : 'Confirm Your Vendor Card'} | SBDA</title>
+  return new Response(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${expired ? 'Link Expired' : 'Confirm Your Vendor Card'} | Stellar Business Development Agency</title>
 <style>
 *{box-sizing:border-box;font-weight:400!important}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#080808;color:#f8f7f3;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
@@ -1099,7 +1099,7 @@ p{margin:0 0 16px;color:#c8c3b9}
 footer{padding:20px clamp(16px,4vw,40px);border-top:1px solid #3b3324;color:#c8c3b9;font-size:.85rem}
 footer a{color:#d7b76d}
 </style></head><body>
-<header><a class="brand" href="/">SBDA<small>STELLAR BUSINESS DEVELOPMENT AGENCY</small></a></header>
+<header><a class="brand" href="/">STELLAR<small>BUSINESS DEVELOPMENT AGENCY</small></a></header>
 <main><div class="panel">${body}</div></main>
 <footer>© 2026 Apropos Group LLC. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer>
 </body></html>`, {status, headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store','referrer-policy':'same-origin','x-robots-tag':'noindex'}});
