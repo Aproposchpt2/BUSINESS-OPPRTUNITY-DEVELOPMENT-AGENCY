@@ -2,14 +2,6 @@
   command = "node scripts/validate-entity-classification.cjs"
   publish = "."
 
-[[edge_functions]]
-  function = "contact-inject"
-  path = "/"
-
-[[edge_functions]]
-  function = "contact-inject"
-  path = "/index.html"
-
 # Keep the aggregate counter same-origin for previews and custom domains.
 # Former domains. Forward every path to the same path on the current domain.
 [[redirects]]

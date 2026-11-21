@@ -83,9 +83,111 @@ a.path-pill:hover{border-color:var(--gold2);color:var(--gold2)}
 @media(max-width:980px){.nav{display:none}.hero,.image-section{height:auto;max-height:none;min-height:auto}.hero-content,.content{width:100%;padding:58px 0 70px}.hero:before{background-image:linear-gradient(180deg,rgba(2,14,34,.97),rgba(5,23,52,.72)),var(--heroImg);background-position:center}.image-section:after{background:linear-gradient(90deg,rgba(2,14,34,.96),rgba(5,23,52,.78),rgba(5,23,52,.38))}.arrow{display:none}}
 @media(max-width:620px){.top .wrap{padding:14px 20px}.btn{width:100%;max-width:360px}.path-pill{font-size:.66rem}.section-label{display:none}.hero h1,.image-section h2{font-size:clamp(1.9rem,8.6vw,2.6rem)}}
 </style>
+<style>
+.client-band{padding:96px 0;background:linear-gradient(180deg,#020b17,#061b3a)}
+.client-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:48px;align-items:start}
+.client-band h2{font-family:Cinzel,serif;color:#fff;font-weight:600;font-size:clamp(2.3rem,4vw,4rem);line-height:1;margin:14px 0 8px}
+.client-band .nofee{color:var(--gold2);font-family:Fraunces,Georgia,serif;font-style:italic;font-size:1.35rem;margin-bottom:26px}
+.benefits{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.benefits li{display:flex;gap:12px;align-items:center;border:1px solid rgba(213,170,77,.35);border-radius:12px;background:rgba(3,18,44,.5);padding:14px 18px;color:#fff;font-weight:800;letter-spacing:.05em;font-size:.82rem;text-transform:uppercase}
+.benefits li:before{content:"✓";color:var(--gold);font-size:1rem}
+.intake{border:1px solid rgba(213,170,77,.35);border-radius:18px;background:rgba(6,27,58,.78);padding:28px}
+.intake h3{font-family:Cinzel,serif;color:#fff;font-size:1.4rem;margin:0 0 16px}
+.intake .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.intake label{display:block;color:rgba(255,255,255,.78);font-size:.72rem;font-weight:700;margin:0 0 6px}
+.intake .f{margin-bottom:14px}
+.intake input,.intake select,.intake textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:#0a2346;color:#fff;padding:12px 14px;font:inherit}
+.intake textarea{min-height:110px;resize:vertical}
+.intake .consent{display:flex;gap:9px;align-items:flex-start;color:rgba(255,255,255,.65);font-size:.74rem;line-height:1.5;margin:4px 0 16px}
+.intake .consent input{width:auto;margin-top:3px}
+.intake button{border:0;cursor:pointer}
+.intake .status{display:block;margin-top:12px;font-size:.8rem;color:rgba(255,255,255,.75)}
+.intake .status.error{color:#ff9b9b}
+.intake .hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+#clientBooking{margin-top:18px;padding:20px;border:1px solid rgba(213,170,77,.55);border-radius:12px;background:rgba(255,255,255,.05)}
+#clientBooking h4{color:var(--gold2);margin:0 0 8px;font-size:1rem}
+#clientBooking p{color:rgba(255,255,255,.75);margin:0 0 14px;font-size:.88rem}
+@media(max-width:900px){.client-grid{grid-template-columns:1fr}.intake .row{grid-template-columns:1fr}}
+</style>
+<style>
+:root{--section5:url('https://images.pexels.com/photos/34823909/pexels-photo-34823909.jpeg?auto=compress&cs=tinysrgb&w=2400')}
+.section-5{background-image:var(--section5)}
+
+</style>
+<style>
+.lic-list{list-style:none;margin:8px 0 26px;padding:0;display:grid;gap:10px;max-width:640px}
+.lic-list li{border:1px solid rgba(213,170,77,.45);border-radius:14px;background:rgba(3,18,44,.55);padding:13px 18px}
+.lic-list b{display:block;color:var(--gold2);font-size:.92rem;letter-spacing:.02em;margin-bottom:3px}
+.lic-list span{color:rgba(255,255,255,.82);font-size:.86rem;line-height:1.55}
+</style>
+<style>
+.client-band{background:linear-gradient(90deg,rgba(2,14,34,.95) 0%,rgba(5,23,52,.82) 32%,rgba(5,23,52,.42) 56%,rgba(5,23,52,.12) 82%),url('https://images.pexels.com/photos/37347/office-sitting-room-executive-sitting.jpg?auto=compress&cs=tinysrgb&w=2400') center/cover!important;border-top:1px solid rgba(213,170,77,.25)}
+@media(min-width:981px){.client-band>.wrap{max-width:none;margin:0;padding-left:clamp(24px,3.2vw,58px);padding-right:clamp(24px,2.5vw,48px)}}
+@media(max-width:980px){.client-band,}
+</style>
+<style>
+.client-band .client-grid{display:block;width:min(56vw,680px)}
+.client-band .benefits{gap:8px;margin-bottom:18px}
+.client-band .benefits li{padding:10px 16px}
+.client-band .intake{padding:18px 20px;background:rgba(6,27,58,.72);backdrop-filter:blur(4px)}
+.client-band .intake .row{gap:10px}
+.client-band .intake .f{margin-bottom:10px}
+.client-band .intake label{margin-bottom:4px;font-size:.66rem}
+.client-band .intake input,.client-band .intake select,.client-band .intake textarea{padding:9px 12px;font-size:.88rem}
+.client-band .intake textarea{min-height:58px}
+.client-band .intake .consent{margin:2px 0 12px}
+.client-band .intake .btn{padding:12px 20px}
+.client-band .nofee{margin-bottom:16px}
+@media(max-width:980px){.client-band .client-grid{width:100%}}
+</style>
+<style id="viewport-fit">
+@media(min-width:981px){
+ html{scroll-snap-type:y proximity;scroll-padding-top:var(--hh,73px)}
+ .hero,.image-section,.client-band{min-height:calc(100svh - var(--hh,73px));height:auto;display:flex;align-items:center;box-sizing:border-box;scroll-snap-align:start;padding-top:0;padding-bottom:0}
+ .hero>.wrap,.image-section>.wrap,.client-band>.wrap{width:100%}
+ .image-section .content,.client-band .client-grid{padding:clamp(20px,3.5vh,44px) 0}
+ .hero h1,.image-section h2,.client-band h2{font-size:clamp(2.1rem,min(3.6vw,6.4vh),3.9rem)}
+ .image-section .subtitle,.client-band .nofee{margin-bottom:clamp(8px,1.6vh,16px)}
+ .image-section .copy{margin-bottom:clamp(10px,2vh,20px)}
+ .section-3 .content{width:min(64vw,940px)}
+ .client-band .client-grid{width:min(60vw,760px)}
+ .client-band .benefits{grid-template-columns:repeat(3,1fr);gap:8px}
+ .client-band .benefits li{font-size:.68rem;padding:9px 12px;line-height:1.3}
+ .client-band .intake{padding:14px 18px}
+ .client-band .intake .f{margin-bottom:8px}
+ .lic-list{grid-template-columns:1fr 1fr;max-width:none;gap:8px;margin:4px 0 clamp(12px,2.4vh,22px)}
+ .lic-list li{padding:10px 14px}
+ .lic-list li:last-child{grid-column:1/-1}
+ .lic-list b{font-size:.86rem}
+ .lic-list span{font-size:.8rem;line-height:1.45}
+}
+@media(min-width:981px) and (max-height:760px){
+ .client-band .intake textarea{min-height:40px}
+ .client-band .benefits li{padding:8px 14px}
+ .lic-list span{display:none}
+}
+</style>
+<style id="viewport-fit-small">
+@media(max-width:980px){
+ .hero,.image-section,.client-band{min-height:calc(100svh - var(--hh,64px));height:auto;display:flex;align-items:center;box-sizing:border-box}
+ .hero>.wrap,.image-section>.wrap,.client-band>.wrap{width:100%}
+ .image-section .content,.client-band .client-grid{padding:40px 0 48px}
+ .lic-list{grid-template-columns:1fr}
+ .client-band .benefits{grid-template-columns:1fr}
+}
+@media(min-width:600px) and (max-width:980px){
+ .lic-list{grid-template-columns:1fr 1fr}
+ .lic-list li:last-child{grid-column:1/-1}
+ .client-band .benefits{grid-template-columns:repeat(3,1fr)}
+ .client-band .benefits li{font-size:.68rem;line-height:1.3}
+ .client-band .intake .row{grid-template-columns:1fr 1fr}
+ .client-band .client-grid{width:100%;max-width:760px}
+}
+</style>
+<script defer>(function(){function s(){var h=document.querySelector('header.top');if(h)document.documentElement.style.setProperty('--hh',h.offsetHeight+'px');}s();addEventListener('load',s);addEventListener('resize',s);})();</script>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="logo" href="/"><span class="mk">S</span><span>Stellar Business<br>Development Agency</span></a><nav class="nav" aria-label="Primary navigation"><a href="#opportunities">Free Business Resources</a><a href="#solutions">Solutions</a><a href="/nevada-business-license">Nevada License</a><a href="#assessment">Business Assessment</a><a href="#future">Coming Soon</a><a href="#contact">Contact</a><a href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Consultation</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="/"><span class="mk">S</span><span>Stellar Business<br>Development Agency</span></a><nav class="nav" aria-label="Primary navigation"><a href="#opportunities">Free Ad Space</a><a href="#contracts">Contract Search</a><a href="#licensing">Business Licensing</a><a href="#assessment">Business Assessment</a><a href="#contact">Contact</a><a href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Consultation</a></nav></div></header>
 <main>
 <section class="hero" id="top"><div class="wrap"><div class="hero-content">
 <span class="kicker">Economic Growth Through Business Development</span>
@@ -93,29 +195,122 @@ a.path-pill:hover{border-color:var(--gold2);color:var(--gold2)}
 <div class="hero-subtitle">Where Business Opportunity Begins</div>
 <p class="hero-copy">We stimulate economic growth by developing businesses that create opportunities, generate employment, strengthen families, and build prosperous communities.</p>
 <div class="trust"><span>Free Contract Search</span><span>Free Ad Space</span><span>Business Development</span><span>Intelligent Systems</span></div>
-<div class="cta-row"><a href="/free-vendor-card" class="btn btn-primary">Claim your FREE Ad Space →</a><a href="#opportunities" class="btn btn-ghost">Explore Free Business Resources →</a><a href="#contact" class="btn btn-ghost">Contact the Agency →</a></div>
+<div class="cta-row"><a href="#become-a-client" class="btn btn-primary">Become a Client →</a><a href="/free-vendor-card" class="btn btn-ghost">Claim your FREE Ad Space →</a><a href="#opportunities" class="btn btn-ghost">Explore Free Business Resources →</a></div>
 </div></div></section>
 
+<section class="client-band" id="contact" aria-label="Become a client"><span id="become-a-client" aria-hidden="true"></span><div class="wrap"><div class="client-grid">
+<div>
+<span class="kicker">Client Benefits</span>
+<h2>Become a Client</h2>
+<div class="nofee">No fee required.</div>
+<ul class="benefits" aria-label="Client benefits">
+<li>Free Ad Space</li>
+<li>Free Access to State and Federal Government Contracts</li>
+<li>Free Consultation</li>
+</ul>
+</div>
+<form class="intake" id="clientIntake" novalidate>
+<div class="row">
+<div class="f"><label for="ciFirst">First Name *</label><input id="ciFirst" name="first" required autocomplete="given-name"></div>
+<div class="f"><label for="ciLast">Last Name *</label><input id="ciLast" name="last" required autocomplete="family-name"></div>
+</div>
+<div class="row">
+<div class="f"><label for="ciBiz">Business Name *</label><input id="ciBiz" name="organization" required autocomplete="organization"></div>
+<div class="f"><label for="ciEmail">Business Email *</label><input id="ciEmail" name="email" type="email" required autocomplete="email"></div>
+</div>
+<div class="row">
+<div class="f"><label for="ciYear">Year Business Established *</label><input id="ciYear" name="year" type="number" inputmode="numeric" min="1900" max="2100" placeholder="e.g. 2024" required></div>
+<div class="f"><label for="ciService">Service Requesting *</label><select id="ciService" name="service" required>
+<option value="">Choose one</option>
+<option>General Business Development Services</option>
+<optgroup label="Business Licensing &amp; Registration">
+<option>Business License: State</option>
+<option>Business License: City or County</option>
+<option>DBA Filing</option>
+<option>IRS Tax ID (EIN) Filing</option>
+</optgroup>
+<option>Insurance</option>
+<option>Bonding</option>
+<option>Contract Proposal Prepared</option>
+<option value="Other">Something else (tell us)</option>
+</select></div>
+</div>
+<div class="f" id="ciOtherWrap" hidden><label for="ciOther">What service do you need? *</label><input id="ciOther" name="other" maxlength="160" placeholder="Describe the service you're looking for"></div>
+<div class="f"><label for="ciComments">Comments</label><textarea id="ciComments" name="comments" rows="2"></textarea></div>
+<div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<label class="consent"><input type="checkbox" name="consent" required> I consent to be contacted by the Stellar Business Development Agency about my request.</label>
+<button class="btn btn-primary" type="submit">Submit &amp; Schedule Consultation →</button>
+<span class="status" id="ciStatus" aria-live="polite"></span>
+<div id="clientBooking" hidden><h4>Next step: schedule your consultation</h4><p>Your intake has been received. Pick a time for your free consultation.</p><a class="btn btn-primary" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8" target="_blank" rel="noopener noreferrer">Schedule Consultation →</a></div>
+</form>
+</div></div></section>
+<script>
+(()=>{'use strict';
+ const form=document.getElementById('clientIntake'),status=document.getElementById('ciStatus');if(!form)return;
+ const svc=document.getElementById('ciService'),ow=document.getElementById('ciOtherWrap'),oi=document.getElementById('ciOther');
+ svc.addEventListener('change',()=>{const on=svc.value==='Other';ow.hidden=!on;oi.required=on;if(!on)oi.value='';});
+ let submissionId=crypto.randomUUID();
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!form.checkValidity()){form.reportValidity();return;}
+  const btn=form.querySelector('button[type="submit"]');btn.disabled=true;status.className='status';status.textContent='Sending…';
+  const fd=new FormData(form);
+  const name=`${fd.get('first')} ${fd.get('last')}`.trim();
+  const comments=String(fd.get('comments')||'').trim();
+  const svcText=fd.get('service')==='Other'?`Other: ${String(fd.get('other')||'').trim()}`:fd.get('service');
+  const message=`Service requesting: ${svcText}\nBusiness name: ${fd.get('organization')}\nYear established: ${fd.get('year')}`+(comments?`\n\nComments:\n${comments}`:'');
+  const payload={submissionId,name,organization:fd.get('organization'),email:fd.get('email'),phone:'',state:'Not provided',message,website:fd.get('website'),consent:fd.get('consent')==='on',inquiryType:'Client Intake'};
+  try{
+   const r=await fetch('/api/inquiry',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
+   const d=await r.json().catch(()=>({}));
+   if(!r.ok||!d.ok)throw new Error(d.message||'Your intake could not be sent.');
+   try{if(typeof window.gtag==='function'&&!fd.get('website'))window.gtag('event','generate_lead',{service:'client_intake',service_requested:String(fd.get('service'))});}catch(_){}
+   submissionId=crypto.randomUUID();form.reset();ow.hidden=true;oi.required=false;
+   status.textContent='Thank you. Your intake has been received.';
+   const b=document.getElementById('clientBooking');b.hidden=false;b.scrollIntoView({behavior:'smooth',block:'center'});
+  }catch(err){status.className='status error';status.textContent=err.message||'Please try again.'}
+  finally{btn.disabled=false}
+ });
+ document.querySelectorAll('#clientBooking a').forEach(a=>a.addEventListener('click',()=>{try{if(typeof window.gtag==='function')window.gtag('event','consultation_booking_click',{service:'client_intake'});}catch(_){}}));
+})();
+</script>
 <section class="image-section section-2" id="opportunities" aria-label="Free business resources"><div class="wrap"><div class="content">
 <span class="kicker">Free Business Resources</span>
-<h2>Free Ad Space.<br>Free Contract Search.</h2>
+<h2>Free Ad Space.</h2>
 <div class="subtitle">The businesses that get seen are the businesses that get called.</div>
 <div class="accent"></div>
-<p class="copy">Your vendor card puts your business on the Stellar Business Development Agency site — free. People looking for what you do can find you, visit your website, and contact you. You can also search federal and state contract opportunities for free through the BDMS Business Contract Search Portal.</p>
+<p class="copy">Your vendor card puts your business on the Stellar Business Development Agency site — free. People looking for what you do can find you, visit your website, and contact you.</p>
 <div class="path"><span class="path-pill"><i></i>Claim Your Free Ad Space</span><span class="arrow">→</span><span class="path-pill"><i></i>Confirm by Email</span><span class="arrow">→</span><span class="path-pill"><i></i>Get Found &amp; Contacted</span></div>
-<div class="cta-row"><a class="btn btn-primary" href="/free-vendor-card">Claim Your Free Ad Space →</a><a class="btn btn-ghost" href="/vendor-edit">Edit Your Vendor Card →</a><a class="btn btn-ghost" href="https://bdms.aproposgroupllc.com/">Search Contracts →</a></div>
+<div class="cta-row"><a class="btn btn-primary" href="/free-vendor-card">Claim Your Free Ad Space →</a><a class="btn btn-ghost" href="/vendor-edit">Edit Your Vendor Card →</a></div>
 <a class="small-link" id="claimOpportunityCta" href="/claim">Claim a referred opportunity →</a>
-</div></div><div class="section-label">Free business resources</div></section>
+</div></div><div class="section-label">Free ad space</div></section>
 
-<section class="image-section section-3" id="solutions" aria-label="Technology solutions"><div class="wrap"><div class="content">
-<span class="kicker">Technology Solutions</span>
-<h2>Systems built around<br>your business.</h2>
-<div class="subtitle">The marketplace for customized intelligent business systems.</div>
+<section class="image-section section-5" id="contracts" aria-label="Free access to state and federal government contracts"><div class="wrap"><div class="content">
+<span class="kicker">Free Contract Search Portal</span>
+<h2>Free Access to State &amp; Federal Government Contracts.</h2>
+<div class="subtitle">Find the opportunities that fit what your business actually does.</div>
 <div class="accent"></div>
-<p class="copy">STELLAR Intelligent Software Developers builds the business system around your business's operations — customer engagement, operational support and business infrastructure.</p>
-<div class="path"><a class="path-pill" href="https://ccc.stellaruc.com"><i></i>Customer Care Center</a><a class="path-pill" href="https://sales.stellaruc.com"><i></i>Sales Specialist</a><a class="path-pill" href="https://specialist.stellaruc.com"><i></i>Support Specialist</a><a class="path-pill" href="https://pma.stellaruc.com"><i></i>Property Management Assistant</a><a class="path-pill" href="https://biaas.stellaruc.com"><i></i>Business Infrastructure as a Service</a><a class="path-pill" href="https://stellaruc.com/products/intelligent-business-marketing-system"><i></i>Business Marketing as a Service</a></div>
-<div class="cta-row"><a class="btn btn-primary" href="https://stellaruc.com/">Explore STELLAR →</a></div>
-</div></div><div class="section-label">Technology solutions</div></section>
+<p class="copy">The BDMS Business Contract Search Portal brings state and federal government contract opportunities into one place, free. Search by the work you perform, your industry and NAICS codes, and where you operate, then go straight to the official solicitation for requirements, deadlines and submission instructions.</p>
+<div class="path"><span class="path-pill"><i></i>Search Opportunities</span><span class="arrow">→</span><span class="path-pill"><i></i>Match Your Capabilities</span><span class="arrow">→</span><span class="path-pill"><i></i>Review the Official Solicitation</span></div>
+<div class="cta-row"><a class="btn btn-primary" href="https://bdms.aproposgroupllc.com/" rel="noopener">Click Here to Go to the Contract Search Portal →</a></div>
+<p class="small-link" style="opacity:.75">Search results don't establish eligibility or guarantee an award. The issuing agency's solicitation controls.</p>
+</div></div><div class="section-label">Free contract search</div></section>
+
+<section class="image-section section-3" id="licensing" aria-label="Business licensing"><div class="wrap"><div class="content">
+<span class="kicker">Business Licensing</span>
+<h2>Licensed, registered<br>and ready to work.</h2>
+<div class="subtitle">We handle the filings so you can focus on your business.</div>
+<div class="accent"></div>
+<p class="copy">Stellar Business Development Agency prepares and files the registrations a Nevada business needs to operate, then helps you stay current every year.</p>
+<ul class="lic-list">
+<li><b>New Nevada State Business License</b><span>We file your State Business License with the Nevada Secretary of State, together with your formation filings when you're starting a new business.</span></li>
+<li><b>Nevada State Business License Renewal</b><span>Your Annual List and State Business License renewal filed on time each year, so your business stays in good standing.</span></li>
+<li><b>DBA Filing</b><span>Register the name your business operates under (a fictitious firm name) with the county clerk.</span></li>
+<li><b>City or County Business License Filing</b><span>Your local business license filed with the city or county where you operate.</span></li>
+<li><b>IRS Tax ID (EIN) Filing</b><span>We apply for your Employer Identification Number with the IRS for banking, hiring and taxes. The IRS issues EINs at no charge.</span></li>
+</ul>
+<div class="cta-row"><a class="btn btn-primary" href="/nevada-business-license">Start a License Request →</a><a class="btn btn-ghost" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8" target="_blank" rel="noopener noreferrer">Book a Consultation</a></div>
+</div></div><div class="section-label">Business licensing</div></section>
 
 <section class="image-section section-4" id="assessment" aria-label="Business needs assessment"><div class="wrap"><div class="content">
 <span class="kicker">Business Needs Assessment</span>
@@ -127,21 +322,11 @@ a.path-pill:hover{border-color:var(--gold2);color:var(--gold2)}
 <div class="cta-row"><a class="btn btn-primary" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Schedule a 30-Minute Consultation →</a><a class="btn btn-ghost" href="https://stellaruc.com">Discover STELLAR</a></div>
 </div></div><div class="section-label">Business needs assessment</div></section>
 
-<section class="band" id="future"><div class="wrap">
-<span class="kicker">Future Service</span>
-<h2>Business Formation &amp; State Filing Services</h2>
-<div class="notice"><strong>COMING SOON — REGULATORY REVIEW</strong><p>This proposed service is not currently available. No formation or filing orders are being accepted.</p></div>
-</div></section>
-
-<section class="band final-band" id="promise"><div class="wrap">
-<h2>Start Your Journey Today</h2>
-<p>Tell us about your business needs, partnership interests, or questions about Stellar Business Development Agency resources. Your inquiry is sent directly to the Agency for review.</p>
-<div class="cta-row" style="justify-content:center"><a class="btn btn-primary" href="#contact">Contact the Agency →</a><a class="btn btn-ghost" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Schedule a Consultation</a></div>
-</div></section>
 </main>
 <footer class="site-footer"><div class="wrap">
 <div class="footer-brandline">Stellar Business Development Agency<br><span>Where Business Opportunity Begins</span></div>
 <p class="footer-copy">© 2026 Apropos Group LLC. All rights reserved. Stellar Business Development Agency is operated by Apropos Group LLC — an independent private business, not a government agency.</p>
+<p class="footer-legal"><a href="https://stellaruc.com/" target="_blank" rel="noopener">Experience Stellar Custom Business System Demos →</a></p>
 <p class="footer-legal"><a href="/about">About Us</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
 </div></footer>
 <script>
