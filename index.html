@@ -167,6 +167,24 @@ a.path-pill:hover{border-color:var(--gold2);color:var(--gold2)}
  .lic-list span{display:none}
 }
 </style>
+<style id="viewport-fit-small">
+@media(max-width:980px){
+ .hero,.image-section,.client-band{min-height:calc(100svh - var(--hh,64px));height:auto;display:flex;align-items:center;box-sizing:border-box}
+ .hero>.wrap,.image-section>.wrap,.client-band>.wrap{width:100%}
+ .image-section .content,.client-band .client-grid{padding:40px 0 48px}
+ .lic-list{grid-template-columns:1fr}
+ .client-band .benefits{grid-template-columns:1fr}
+}
+@media(min-width:600px) and (max-width:980px){
+ .lic-list{grid-template-columns:1fr 1fr}
+ .lic-list li:last-child{grid-column:1/-1}
+ .client-band .benefits{grid-template-columns:repeat(3,1fr)}
+ .client-band .benefits li{font-size:.68rem;line-height:1.3}
+ .client-band .intake .row{grid-template-columns:1fr 1fr}
+ .client-band .client-grid{width:100%;max-width:760px}
+}
+</style>
+<script defer>(function(){function s(){var h=document.querySelector('header.top');if(h)document.documentElement.style.setProperty('--hh',h.offsetHeight+'px');}s();addEventListener('load',s);addEventListener('resize',s);})();</script>
 </head>
 <body>
 <header class="top"><div class="wrap"><a class="logo" href="/"><span class="mk">S</span><span>Stellar Business<br>Development Agency</span></a><nav class="nav" aria-label="Primary navigation"><a href="#opportunities">Free Ad Space</a><a href="#contracts">Contract Search</a><a href="#licensing">Business Licensing</a><a href="#assessment">Business Assessment</a><a href="#contact">Contact</a><a href="https://calendar.app.google/DNAMvEyWbg2jfxaN8">Consultation</a></nav></div></header>
