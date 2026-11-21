@@ -121,7 +121,7 @@ section.block p.lead{color:rgba(255,255,255,.68);max-width:760px;line-height:1.7
 <div class="eyebrow">Nevada Business License Service</div>
 <h1>Your Nevada business, formed and licensed.</h1>
 <p class="promise">Starting a business in Nevada takes three state filings: Articles of Organization, an Initial List of managers or members, and a State Business License. Stellar Business Development Agency prepares and files them with the Nevada Secretary of State for you, then keeps you on track every year after.</p>
-<div class="price-row"><a class="btn" href="#request">Start My License Request</a><a class="btn ghost" href="tel:+18882589498">Call (888) 258-9498</a></div>
+<div class="price-row"><a class="btn" href="#request">Start My License Request</a><a class="btn ghost" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8" target="_blank" rel="noopener noreferrer">Book a Consultation</a><a class="btn ghost" href="tel:+18882589498">Call (888) 258-9498</a></div>
 </div></section>
 
 <section class="block shell">
@@ -138,7 +138,7 @@ section.block p.lead{color:rgba(255,255,255,.68);max-width:760px;line-height:1.7
 <h2>How it works.</h2>
 <ol class="steps">
 <li><b>1. Request.</b> Tell us about your business with the form below.</li>
-<li><b>2. Confirm.</b> We review your details and send your quote. Nothing is filed until you approve it.</li>
+<li><b>2. Consult.</b> Meet with us to review your business, your filings and your cost. Nothing is filed until you approve it.</li>
 <li><b>3. File.</b> We submit your filings to the Nevada Secretary of State.</li>
 <li><b>4. Receive.</b> You get your filed documents and State Business License, plus a Free Vendor Card so customers can find you from day one.</li>
 </ol>
@@ -147,7 +147,7 @@ section.block p.lead{color:rgba(255,255,255,.68);max-width:760px;line-height:1.7
 
 <section class="block shell"><div class="contact-wrap" id="request">
 <h2>Start your Nevada license request.</h2>
-<p>We'll review your request and contact you with a quote before anything is filed.</p>
+<p>Send your request, then book a consultation. We'll go over your filings and cost together before anything is filed.</p>
 <form class="contact-form" id="licenseRequest">
 <div class="form-grid">
 <div class="field"><label for="lrName">Your Name *</label><input id="lrName" name="name" required autocomplete="name"></div>
@@ -162,6 +162,7 @@ section.block p.lead{color:rgba(255,255,255,.68);max-width:760px;line-height:1.7
 <label class="consent"><input type="checkbox" name="consent" required> I consent to be contacted by email or phone by the Stellar Business Development Agency about this license request.</label>
 <div class="contact-actions"><button class="btn contact-submit" type="submit">Send My License Request</button><span class="form-status" id="lrStatus" aria-live="polite"></span></div>
 </form>
+<div id="lrBooking" hidden style="margin-top:24px;padding:22px;border:1px solid rgba(199,167,90,.55);border-radius:12px;background:rgba(255,255,255,.06)" aria-live="polite"><h3 style="color:#ead9a5;margin:0 0 10px">Next Step: Book Your Consultation</h3><p style="line-height:1.6">Your license request has been received. Choose a time to meet and we'll go over your filings and cost.</p><a class="btn" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8" target="_blank" rel="noopener noreferrer">Book Your Google Meet Consultation</a><p style="font-size:.78rem;opacity:.8">Your appointment is not confirmed until you complete the calendar booking.</p></div>
 </div>
 <p class="footer">STELLAR BUSINESS DEVELOPMENT AGENCY · An independent private business operated by Apropos Group LLC, not a government agency. · (888) 258-9498 · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
 </section>
@@ -169,6 +170,7 @@ section.block p.lead{color:rgba(255,255,255,.68);max-width:760px;line-height:1.7
 (()=>{'use strict';
  const form=document.getElementById('licenseRequest'),status=document.getElementById('lrStatus');
  if(!form)return;
+ document.querySelectorAll('a[href*="calendar.app.google"]').forEach(a=>a.addEventListener('click',()=>{try{if(typeof window.gtag==='function')window.gtag('event','consultation_booking_click',{send_to:'G-VXX1P92PHS',service:'nevada_business_license',page_location:location.origin+location.pathname});}catch(_){}}));
  let submissionId=crypto.randomUUID();
  form.addEventListener('submit',async e=>{
   e.preventDefault();const btn=form.querySelector('button[type="submit"]');btn.disabled=true;status.className='form-status';status.textContent='Sending…';
@@ -182,7 +184,7 @@ section.block p.lead{color:rgba(255,255,255,.68);max-width:760px;line-height:1.7
    if(!r.ok||!d.ok)throw new Error(d.message||'Your request could not be sent.');
    try{if(typeof window.gtag==='function'&&!fd.get('website'))window.gtag('event','generate_lead',{send_to:'G-VXX1P92PHS',service:'nevada_business_license',page_location:location.origin+location.pathname});}catch(_){}
    submissionId=crypto.randomUUID();
-   status.className='form-status ok';status.textContent='Thank you. Your license request has been received. We will contact you with a quote before anything is filed.';form.reset();
+   status.className='form-status ok';status.textContent='Thank you. Your license request has been received.';form.reset();document.getElementById('lrBooking').hidden=false;
   }catch(err){status.className='form-status error';status.textContent=err.message||'Please try again.'}
   finally{btn.disabled=false}
  });
