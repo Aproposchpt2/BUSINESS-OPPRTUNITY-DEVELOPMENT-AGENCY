@@ -51,10 +51,11 @@ const contactSection = `
 <section class="contact-section" id="contact" aria-labelledby="contact-title">
   <div class="shell contact-grid">
     <div class="contact-copy reveal">
-      <div class="eyebrow">Contact the Agency</div>
-      <h2 class="section-title" id="contact-title">YOUR NEXT STEP - CONTACT US</h2>
+      <div class="eyebrow">Your Next Step · Contact the Agency</div>
+      <h2 class="section-title" id="contact-title">START YOUR JOURNEY TODAY</h2>
       <p>Tell us about your business needs, partnership interests, or questions about Stellar Business Development Agency resources.</p>
       <p class="contact-note">Your inquiry is sent directly to the Agency for review.</p>
+      <p style="margin-top:22px"><a class="btn btn-ghost" href="https://calendar.app.google/DNAMvEyWbg2jfxaN8" target="_blank" rel="noopener noreferrer">Schedule a Consultation</a></p>
     </div>
 
     <form class="inquiry-form reveal" id="inquiryForm" novalidate>
